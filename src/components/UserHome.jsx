@@ -14,8 +14,8 @@ constructor() {
 }
 
 componentDidMount() {
-  console.log(this)
-  // axios.get(`/api/getUser/${this}`)
+  // console.log(this)
+  // axios.get(`/api/getUser/${}`)
 
 }
 
@@ -25,7 +25,7 @@ render() {
   return(
     <div>
 
-    <h1>Welcome Back </h1>
+    <h1>Welcome Back {this.state.user.first_name}</h1>
 
     <ul>
       <li>add New List </li>

@@ -22,16 +22,21 @@ export default class SignIn extends Component {
   }
 
   loginHandler = (res) => {
+
     axios.post('/auth/login', {
       phone: this.state.phone,
       pass: this.state.pass
-    }).catch((err => console.log(err)))
-    console.log(res)
-    //set session to redux store 
-    store.dispatch({
-      type: GET_SESSION, 
-      payload: res.data
+    }).then((response)=> {
+
+      store.dispatch({
+        type: GET_SESSION, 
+        payload: response.data
+      })
     })
+    
+    
+    .catch((err => console.log(err)))
+    //set session to redux store 
 
 
   }
