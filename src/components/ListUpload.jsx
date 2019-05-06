@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import Papa from 'papaparse'
 
-
+//known bug: keys in new list data have spaces in their names. 
 
 
 
@@ -16,9 +16,9 @@ export default class ListUpload extends Component {
   }
 
 
-  //ok i am stuck - i need to get the file through the parser, and then set that data to a post request 
+//the submit handler does not break the data down into the individual parts. this wil be handled on the backend. 
 
-  submitHandler = (e) => {
+ submitHandler = (e) => {
     e.preventDefault()
     let file = document.getElementById('fileUp')
     // console.log(file.files[0])
@@ -31,9 +31,10 @@ export default class ListUpload extends Component {
 
 
 
-    Papa.parse(file.files[0], {
+  Papa.parse(file.files[0], {
       header: true,
       complete: (res) => {
+        console.log('parsed')
         this.setState({
           newListData: res.data
         })
@@ -41,10 +42,23 @@ export default class ListUpload extends Component {
     }
     )
 
+
+setTimeout( ()=>{
     axios.post('/api/addList', {
       listName: this.state.newListName,
       properties: this.state.newListData,
-    }).catch(err=>console.log(err, 'add list failed'))
+    }).catch(err=>console.log(err, 'add list failed'))}, 10
+
+)
+
+//resets list data in case you want to add another list
+setTimeout(() => {
+  this.setState({
+    newListData:[]
+  })
+  
+}, 11);
+
 
   }
 
@@ -56,6 +70,8 @@ export default class ListUpload extends Component {
 
           <h1>Create New Property List</h1>
           <p>Please Upload a CSV file in the following format:</p>
+          
+          
           {/* <table>
             <th>Owner Name</th>
             <th>Street Address</th>
@@ -70,8 +86,8 @@ export default class ListUpload extends Component {
               <td>UT</td>
               <td>84601</td>
             </tr>
-          </table>
- */}
+          </table> */}
+
 
           <div className="fileInputCont">
             <input type="text" placeholder="List Name" onChange={(e) => {

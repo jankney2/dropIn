@@ -1,20 +1,33 @@
-module.exports= {
-  addList: (req, res)=> {
-    let dbInstance= req.app.get('db')
-    let {session, listName}= req.body 
+module.exports = {
+  addList: (req, res) => {
+    //maybe make what we pull off the request a bit more robust- later
+    let { properties, listName } = req.body
+    let { session } = req
+    let dbInstance = req.app.get('db')
 
-    dbInstance.add_prop_list([session.id, listName]).then(response=> {
-      res.status(200).send(response)
-    }).catch(err=>{res.sendStatus(500)
-      console.log(err)
+    console.log(session)
+    //connect the userid to the database insert
+    //add the property list
+
+    properties.forEach((el) => {
+
+    dbInstance.add_property([el["Property Street"], el['Property City'], el['Property State'], el['Property Zip'].toString(), el.Price.toString(), el['Bathrooms Full'].toString(), el.Bedrooms.toString(), el.Seller]).catch(err=>console.log(err))
+
+
+      // console.log(el['Square Feet'], listName, el['Property City'], el['Property State'], el["Property Street"], el["Property Zip"], el['Bathrooms Full'], el.price, el.Seller, el['Year Built'], el.Bedrooms)
+
+
     })
 
-//when i know the shape of the data that will be passed in, i'll put the sql command in here to create each individual property in the properties table- the properties key on the body should be an array of objects that represent each individual portion of the property 
+//do i need a "returning" in my sql file? 
+    res.sendStatus(200)
 
-  }, 
-  deleteList: (req, res)=> {
-    let dbInstance= req.app.get('db')
-    
+    //when i know the shape of the data that will be passed in, i'll put the sql command in here to create each individual property in the properties table- the properties key on the body should be an array of objects that represent each individual portion of the property 
+
+  },
+  deleteList: (req, res) => {
+    let dbInstance = req.app.get('db')
+
 
     dbInstance.deleteList()
   }

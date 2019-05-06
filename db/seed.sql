@@ -18,6 +18,34 @@ create table property_lists (
 
 );
 
+
+create table properties (
+
+	parent_list_id int references property_lists(list_id), 
+	property_id serial primary key,
+	street varchar(150), 
+	city varchar(50), 
+	state varchar(50), 
+	zip varchar(50), 
+	price varchar(50), 
+	bathrooms varchar(50),
+	bedrooms varchar(50), 
+	seller varchar(100)
+
+)
+
+insert into properties (
+	parent_list_id, 
+	street, 
+	city, 
+	state, 
+	zip, 
+	price, 
+	bathrooms, 
+	bedrooms, 
+	seller
+)
+
 --this table has not been created in the db! find out shape of data. 
 create table property_details(
 	Columns:

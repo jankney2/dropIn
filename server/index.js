@@ -1,5 +1,6 @@
 require('dotenv').config()
 
+
 const express= require('express')
 const app= express()
 const session= require('express-session')
@@ -7,6 +8,7 @@ const massive= require('massive')
 const {SESSION_SECRET, SERVER_PORT, CONNECTION_STRING}= process.env
 const userCtrl= require('./controllers/userCtrl')
 const listCtrl= require('./controllers/listCtrl')
+const authCtrl=require('./controllers/authCtrl')
 
 massive(CONNECTION_STRING).then((database)=> {
   app.set('db', database)
@@ -29,6 +31,12 @@ app.use(session({
 
 app.get(`/api/getUser/:id`, userCtrl.getUser)
 app.post(`/api/addList`, listCtrl.addList)
+
+
+app.post('/auth/login', authCtrl.login)
+app.post('/auth/register', authCtrl.register)
+app.get('/auth/logout', authCtrl.logout)
+
 // app.delete(`/api/deleteList`, listCtrl.deleteList)
 
 
