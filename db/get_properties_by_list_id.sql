@@ -1,0 +1,1 @@
+select * from properties where property_list_id=$1

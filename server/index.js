@@ -28,9 +28,13 @@ app.use(session({
 }))
 
 
+app.delete('/api/userLists/:listId', listCtrl.deleteList)
 
+app.get('/api/userTotal/:userId', userCtrl.getTotal)
 app.get(`/api/getUser/:id`, userCtrl.getUser)
 app.get('/api/userLists/:id', listCtrl.getLists)
+app.get('/api/properties/:listId', listCtrl.getProperties)
+
 app.post(`/api/addList`, listCtrl.addList)
 
 app.post('/auth/login', authCtrl.login)

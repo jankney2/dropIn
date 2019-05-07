@@ -26,13 +26,8 @@ module.exports = {
           res.sendStatus(200)
     
 
-    // console.log(el['Square Feet'], listName, el['Property City'], el['Property State'], el["Property Street"], el["Property Zip"], el['Bathrooms Full'], el.price, el.Seller, el['Year Built'], el.Bedrooms)
-
-
-
     //do i need a "returning" in my sql file? 
 
-    //when i know the shape of the data that will be passed in, i'll put the sql command in here to create each individual property in the properties table- the properties key on the body should be an array of objects that represent each individual portion of the property 
 
   },
 
@@ -46,10 +41,30 @@ getLists: (req, res)=> {
 
 },
 
+getProperties: (req, res)=> {
+  let dbInstance= req.app.get('db')
+  let {listId}= req.params
+
+  dbInstance.get_properties_by_list_id(listId).then(response=> {
+
+    res.status(200).send(response)
+  }).catch(err=>{
+    console.log('issue with backend property get', err)
+    res.sendStatus(500)
+  })
+
+
+}, 
+
   deleteList: (req, res) => {
     let dbInstance = req.app.get('db')
+    let {listId} = req.params
+    console.log(listId)
+    dbInstance.delete_list_by_list_id([listId]).then(response=>{
+      console.log("delete res", response)
+      res.status(200).send(response)
+    }).catch(err=>res.status(500).send(err))
 
 
-    dbInstance.deleteList()
   }
 }

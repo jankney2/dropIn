@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import {Link} from 'react-router-dom'
 import store, {GET_SESSION} from '../redux/store'
-import {Route} from 'react-router-dom'
 
 export default class SignIn extends Component {
   constructor() {
@@ -35,11 +34,7 @@ export default class SignIn extends Component {
         payload: response.data
       })
       
-    })
-    
-    
-    .catch((err => console.log(err)))
-    //set session to redux store 
+    }).catch((err => console.log(err)))
     
 
 
@@ -51,17 +46,20 @@ export default class SignIn extends Component {
 
         <h1>Welcome to DropIn! Please Login</h1>
 
-        <label htmlFor="phone">
+        <label htmlFor="phone"> Phone:
           <input type="text" placeholder="phone number" name='phone' onChange={this.handleChange} />
 
         </label>
 
-        <label htmlFor="pass">
+        <label htmlFor="pass"> Password:
           <input type="password" placeholder="password" name='pass' onChange={this.handleChange} />
 
         </label>
 
-        <button onClick={this.loginHandler}>Login</button>
+
+<Link to='/userHome' >       
+ <button onClick={this.loginHandler}>Login</button> 
+ </Link>
 
 
         {/* add a link below  */}
