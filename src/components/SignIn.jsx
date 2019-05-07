@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import {Link} from 'react-router-dom'
 import store, {GET_SESSION} from '../redux/store'
-
+import {Route} from 'react-router-dom'
 
 export default class SignIn extends Component {
   constructor() {
@@ -21,7 +21,9 @@ export default class SignIn extends Component {
     })
   }
 
-  loginHandler = (res) => {
+  loginHandler = (e) => {
+    e.preventDefault()
+
 
     axios.post('/auth/login', {
       phone: this.state.phone,
@@ -32,11 +34,13 @@ export default class SignIn extends Component {
         type: GET_SESSION, 
         payload: response.data
       })
+      
     })
     
     
     .catch((err => console.log(err)))
     //set session to redux store 
+    
 
 
   }

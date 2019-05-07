@@ -34,10 +34,10 @@ export default class ListUpload extends Component {
   Papa.parse(file.files[0], {
       header: true,
       complete: (res) => {
-        console.log('parsed')
         this.setState({
           newListData: res.data
         })
+        console.log('parsed')
       }
     }
     )
@@ -47,17 +47,17 @@ setTimeout( ()=>{
     axios.post('/api/addList', {
       listName: this.state.newListName,
       properties: this.state.newListData,
-    }).catch(err=>console.log(err, 'add list failed'))}, 10
+    }).catch(err=>console.log(err, 'add list failed'))}, 5000
 
 )
 
 //resets list data in case you want to add another list
-setTimeout(() => {
-  this.setState({
-    newListData:[]
-  })
+// setTimeout(() => {
+//   this.setState({
+//     newListData:[]
+//   })
   
-}, 11);
+// }, 11);
 
 
   }
