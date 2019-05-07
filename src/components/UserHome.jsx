@@ -10,14 +10,15 @@ constructor() {
   super()
  const reduxState= store.getState()
   this.state= {
-    user: reduxState.user
+    user: reduxState.user,
+    userLists: reduxState.userPropLists
   }
 }
 //this is where you'll grab the lists for the user based off of the user's id (which you can pull off of the user object on state)
 componentDidMount() {
 
   axios.get(`/api/userLists/${this.state.user.user_id}`).then(res=>{
-    // console.log(res.data)
+
     store.dispatch({
       type: GET_USER_PROP_LISTS, 
       payload: res.data

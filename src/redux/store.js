@@ -25,7 +25,7 @@ function reducer(state = initialState, action) {
     return { ...state, user: payload.user  }
 
     case GET_USER_PROP_LISTS:
-
+//something is wrong here
     return {...state, userPropLists: payload}
 
     default: 

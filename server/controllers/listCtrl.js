@@ -39,10 +39,9 @@ module.exports = {
 getLists: (req, res)=> {
   let dbInstance= req.app.get('db')
   let {id}= req.params
-  console.log(id)
+
   dbInstance.get_list_by_user_id([id]).then(response=>{
-    console.log(response)
-    res.status(200).send(response[0])
+    res.status(200).send(response)
   }).catch(err=>res.send(err))
 
 },
