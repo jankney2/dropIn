@@ -10,7 +10,7 @@ const initialState= {
 }
 
 export const GET_SESSION ='GET_SESSION'
-
+export const GET_USER_PROP_LISTS='GET_USER_PROP_LISTS'
 
 
 function reducer(state = initialState, action) {
@@ -24,6 +24,9 @@ function reducer(state = initialState, action) {
 
     return { ...state, user: payload.user  }
 
+    case GET_USER_PROP_LISTS:
+
+    return {...state, userPropLists: payload}
 
     default: 
     return state

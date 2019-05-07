@@ -30,8 +30,8 @@ app.use(session({
 
 
 app.get(`/api/getUser/:id`, userCtrl.getUser)
+app.get('/api/userLists/:id', listCtrl.getLists)
 app.post(`/api/addList`, listCtrl.addList)
-
 
 app.post('/auth/login', authCtrl.login)
 app.post('/auth/register', authCtrl.register)

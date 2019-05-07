@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import store from '../redux/store'
+import store, { GET_USER_PROP_LISTS } from '../redux/store'
 import axios from 'axios'
 import {Link} from 'react-router-dom'
 
@@ -15,8 +15,14 @@ constructor() {
 }
 //this is where you'll grab the lists for the user based off of the user's id (which you can pull off of the user object on state)
 componentDidMount() {
-  // console.log(this)
-  // axios.get(`/api/getUser/${}`)
+
+  axios.get(`/api/userLists/${this.state.user.user_id}`).then(res=>{
+    // console.log(res.data)
+    store.dispatch({
+      type: GET_USER_PROP_LISTS, 
+      payload: res.data
+    })
+  }).catch(err=>console.log(err, 'frontend get failed'))
 
 }
 

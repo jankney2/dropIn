@@ -12,7 +12,6 @@ module.exports = {
     dbInstance.create_list([session.user.user_id, listName]).catch(err=>console.log(err, "first one failed"))
     
     properties.forEach((el) => {
-      console.log('foreach hit')
       
       dbInstance.add_property([el["Property Street"],
        el['Property City'],
@@ -36,6 +35,18 @@ module.exports = {
     //when i know the shape of the data that will be passed in, i'll put the sql command in here to create each individual property in the properties table- the properties key on the body should be an array of objects that represent each individual portion of the property 
 
   },
+
+getLists: (req, res)=> {
+  let dbInstance= req.app.get('db')
+  let {id}= req.params
+  console.log(id)
+  dbInstance.get_list_by_user_id([id]).then(response=>{
+    console.log(response)
+    res.status(200).send(response[0])
+  }).catch(err=>res.send(err))
+
+},
+
   deleteList: (req, res) => {
     let dbInstance = req.app.get('db')
 
