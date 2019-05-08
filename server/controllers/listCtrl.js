@@ -1,5 +1,6 @@
 const axios= require('axios')
-
+require('dotenv').config()
+const {REACT_APP_GOOGLE_MAPS_KEY}= process.env
 
 module.exports = {
 
@@ -13,27 +14,45 @@ module.exports = {
     let dbInstance = req.app.get('db')
 
 
-    //connect the userid to the database insert
-    //add the property list
     
     
-
-
+    
+    
     dbInstance.create_list([session.user.user_id, listName]).catch(err=>console.log(err, "first one failed"))
-    //make call to geolocation api to get individual address geolocation 
+    
+    
+    
     properties.forEach((el) => {
-      
-      dbInstance.add_property([el["Property Street"],
-       el['Property City'],
-        el['Property State'],
-         el['Property Zip'].toString(),
-          el.Price.toString(),
-           el['Bathrooms Full'].toString(), el.Bedrooms.toString(),
-            el.Seller, listName])
-            .catch(err=>console.log(err)) 
-          })
-          
-          res.sendStatus(200)
+      //geocode the address
+      console.log('forEachHit')
+      axios.post(`https://maps.googleapis.com/maps/api/geocode/json?address=${el["Property Street"]}+${el["Property City"].replace(',','')}+${el['Property State']}+${el['Property Zip'].toString()}&key=${REACT_APP_GOOGLE_MAPS_KEY}`)
+      .then(geoCodeRes=>{
+        
+        
+        console.log(geoCodeRes.data.results[0].geometry.location)
+        let latitude= geoCodeRes.data.results[0].geometry.location.lat.toString()
+
+        let longitude=geoCodeRes.data.results[0].geometry.location.lng.toString()
+
+
+        //add lat and long into db with all other components 
+
+        dbInstance.add_property([el["Property Street"],
+         el['Property City'],
+          el['Property State'],
+           el['Property Zip'].toString(),
+            el.Price.toString(),
+             el['Bathrooms Full'].toString(), el.Bedrooms.toString(),
+              el.Seller, listName, latitude, longitude])
+              .catch(err=>console.log(err)) 
+            }).catch(err=>res.status(500).send(err))
+            
+            res.sendStatus(200)
+
+
+      })
+  
+
     
 
 

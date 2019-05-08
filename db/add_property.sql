@@ -7,7 +7,9 @@ insert into properties (
 	bathrooms, 
 	bedrooms, 
 	seller,
-  property_list_id
+  property_list_id, 
+  latitude, 
+  longitude
 
 ) values (
   $1, 
@@ -18,5 +20,7 @@ insert into properties (
   $6,
   $7,
   $8, 
-  (select list_id from property_lists where list_name=$9 limit 1)
+  (select list_id from property_lists where list_name=$9 limit 1), 
+  $10, 
+  $11
 )
