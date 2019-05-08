@@ -28,21 +28,23 @@ app.use(session({
 }))
 
 
-app.delete('/api/userLists/:listId', listCtrl.deleteList)
+// app.get('/api/test', listCtrl.axiosTest)
 
 app.get('/api/userTotal/:userId', userCtrl.getTotal)
 app.get(`/api/getUser/:id`, userCtrl.getUser)
 app.get('/api/userLists/:id', listCtrl.getLists)
 app.get('/api/properties/:listId', listCtrl.getProperties)
-
-app.post(`/api/addList`, listCtrl.addList)
-
-app.post('/auth/login', authCtrl.login)
-app.post('/auth/register', authCtrl.register)
 app.get('/auth/logout', authCtrl.logout)
 
-// app.delete(`/api/deleteList`, listCtrl.deleteList)
 
+
+app.post(`/api/addList`, listCtrl.addList)
+app.post('/auth/login', authCtrl.login)
+app.post('/auth/register', authCtrl.register)
+
+
+//fix this one to send as response the new lsit 
+app.delete('/api/userLists/:listId', listCtrl.deleteList)
 
 
 app.listen(SERVER_PORT, ()=> console.log('listening on ', SERVER_PORT))

@@ -1,4 +1,11 @@
+const axios= require('axios')
+
+
 module.exports = {
+
+
+
+
   addList: (req, res) => {
     //maybe make what we pull off the request a bit more robust- later
     let { properties, listName } = req.body
@@ -9,8 +16,11 @@ module.exports = {
     //connect the userid to the database insert
     //add the property list
     
-    dbInstance.create_list([session.user.user_id, listName]).catch(err=>console.log(err, "first one failed"))
     
+
+
+    dbInstance.create_list([session.user.user_id, listName]).catch(err=>console.log(err, "first one failed"))
+    //make call to geolocation api to get individual address geolocation 
     properties.forEach((el) => {
       
       dbInstance.add_property([el["Property Street"],
@@ -26,7 +36,7 @@ module.exports = {
           res.sendStatus(200)
     
 
-    //do i need a "returning" in my sql file? 
+
 
 
   },
