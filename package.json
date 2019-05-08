@@ -40,5 +40,8 @@
     ]
   },
   "proxy": "http://localhost:6001",
-  "main": "server/index.js"
+  "main": "server/index.js", 
+  "nodemonConfig": {
+    "ignore": ["server/Twilio/*.js"]
+  }
 }

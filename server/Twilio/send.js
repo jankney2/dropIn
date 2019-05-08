@@ -1,18 +1,27 @@
 require('dotenv').config()
 
 const {TWILIO_SID, TWILIO_AUTH_TOKEN}= process.env
-
-
-console.log(TWILIO_AUTH_TOKEN, TWILIO_SID)
+console.log('nodemon is running on the wrong file- send.js')
 const client=require('twilio')(TWILIO_SID, TWILIO_AUTH_TOKEN)
 
 
+module.exports= {
 
-client.messages.create({
-  body:"Do you believe in the prophecy of the one?",
-  from:"+13852175119", 
-  to:'+17572025877' 
-}).then(message=>console.log(message.sid))
+textAlert: (distance, street, city)=>{
+
+  client.messages.create({
+    body:`you are ${distance} away from ${street} ${city}`,
+    from:"+13852175119", 
+    to:'+17572025877' 
+  }).then(message=>console.log("the message worked you're a genius"))
+
+
+}
+
+
+
+}
+
 
 
 

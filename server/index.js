@@ -28,7 +28,7 @@ app.use(session({
 }))
 
 
-app.get(`/api/test/:userId`, distanceCalc.calcDist)
+app.post(`/api/test/:userId`, distanceCalc.calcDist)
 
 app.get('/api/userTotal/:userId', userCtrl.getTotal)
 app.get(`/api/getUser/:id`, userCtrl.getUser)

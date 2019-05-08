@@ -12,7 +12,8 @@ constructor() {
   this.state= {
     user: reduxState.user,
     userLists: reduxState.userPropLists,
-    userTotal:0
+    userTotal:0, 
+    userLocation: {}
   }
 }
 //this is where you'll grab the lists for the user based off of the user's id (which you can pull off of the user object on state)
@@ -31,6 +32,18 @@ componentDidMount() {
       payload: res.data
     })
   }).catch(err=>console.log(err, 'frontend get failed'))
+
+
+  navigator.geolocation.getCurrentPosition((position)=>{
+    let pos= {
+      userLat:position.coords.latitude,
+      userLong:position.coords.longitude
+    }
+
+    this.setState({
+      userLocation:pos
+    })
+  })
 
 }
 
@@ -66,6 +79,12 @@ render() {
 
 
     </ul>
+
+
+<button onClick= {()=>{
+  axios.post(`/api/test/${this.state.user.user_id}`, this.state.userLocation ).then(res=>console.log(res.body)).catch(err=>alert(err))
+}}>Click me to make location request</button>
+
 
     </div>
   )
