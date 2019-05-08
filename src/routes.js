@@ -7,7 +7,7 @@ import Home from './components/Home'
 import UserHome from './components/UserHome'
 import ListDisplay from './components/ListDisplay'
 import GM from './components/GM'
-import CurrentLoc from './components/CurrentLoc'
+
 
 
 export default (

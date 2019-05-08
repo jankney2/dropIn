@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import store from '../redux/store'
 import List from './List'
 import axios from 'axios'
-const {MAP_KEY}=process.env
+
 
 export default class ListDisplay extends Component {
   constructor() {
