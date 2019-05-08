@@ -82,7 +82,7 @@ render() {
 
 
 <button onClick= {()=>{
-  axios.post(`/api/test/${this.state.user.user_id}`, this.state.userLocation ).then(res=>console.log(res.body)).catch(err=>alert(err))
+  axios.post(`/api/test/${this.state.user.user_id}`, this.state.userLocation ).then(res=>console.log(res)).catch(err=>alert(err))
 }}>Click me to make location request</button>
 
 
