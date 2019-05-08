@@ -9,7 +9,7 @@ const {SESSION_SECRET, SERVER_PORT, CONNECTION_STRING}= process.env
 const userCtrl= require('./controllers/userCtrl')
 const listCtrl= require('./controllers/listCtrl')
 const authCtrl=require('./controllers/authCtrl')
-
+const distanceCalc= require('./controllers/distanceCalc')
 massive(CONNECTION_STRING).then((database)=> {
   app.set('db', database)
   console.log('database connected')
@@ -28,7 +28,7 @@ app.use(session({
 }))
 
 
-// app.get('/api/test', listCtrl.axiosTest)
+app.get(`/api/test/:userId`, distanceCalc.calcDist)
 
 app.get('/api/userTotal/:userId', userCtrl.getTotal)
 app.get(`/api/getUser/:id`, userCtrl.getUser)

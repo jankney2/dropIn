@@ -27,7 +27,6 @@ module.exports = {
       let geoCodeRes = await axios.post(`https://maps.googleapis.com/maps/api/geocode/json?address=${el["Property Street"]}+${el["Property City"].replace(',', '')}+${el['Property State']}+${el['Property Zip'].toString()}&key=${REACT_APP_GOOGLE_MAPS_KEY}`)
 
 
-      console.log(geoCodeRes.data.results[0].geometry.location)
 
       let latitude = geoCodeRes.data.results[0].geometry.location.lat.toString()
 
