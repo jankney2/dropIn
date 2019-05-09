@@ -33,6 +33,7 @@ module.exports = {
 
     } catch  {
       res.sendStatus(500)
+      console.log(res)
     }
 
 

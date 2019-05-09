@@ -29,7 +29,7 @@ function reducer(state = initialState, action) {
     return {...state, userPropLists: payload}
 
     case UPDATE_USER_INFO:
-    return {...state, user:payload.user}
+    return {...state, user:payload}
 
     default: 
     return state

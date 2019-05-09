@@ -37,7 +37,7 @@ app.use(session({
 
 app.post(`/api/test/:userId`, distanceCalc.calcDist)
 
-
+app.put('/api/users/updateInfo/:userId', userCtrl.updateUserInfo)
 app.get('/api/userTotal/:userId', userCtrl.getTotal)
 app.get(`/api/getUser/:id`, userCtrl.getUser)
 app.get('/api/userLists/:id', listCtrl.getLists)
