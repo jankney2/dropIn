@@ -11,7 +11,7 @@ const initialState= {
 
 export const GET_SESSION ='GET_SESSION'
 export const GET_USER_PROP_LISTS='GET_USER_PROP_LISTS'
-
+export const UPDATE_USER_INFO = 'UPDATE_USER_INFO'
 
 function reducer(state = initialState, action) {
   
@@ -27,6 +27,9 @@ function reducer(state = initialState, action) {
     case GET_USER_PROP_LISTS:
 //something is wrong here
     return {...state, userPropLists: payload}
+
+    case UPDATE_USER_INFO:
+    return {...state, user:payload.user}
 
     default: 
     return state

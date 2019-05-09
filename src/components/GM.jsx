@@ -6,7 +6,7 @@ import CurrentLocation from './map'
 require('dotenv').config()
 const { REACT_APP_GOOGLE_MAPS_KEY } = process.env
 
-console.log(process.env)
+
 
 
 

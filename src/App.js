@@ -6,6 +6,8 @@ import SignUp from './components/SignUp';
 import routes from './routes'
 import {HashRouter} from 'react-router-dom'
 
+import NavBar from './components/NavBar';
+
 
 function App() {
 
@@ -13,7 +15,9 @@ function App() {
 
   return (
     <div>
+
 <HashRouter >
+<NavBar/>
 {routes}
 </HashRouter>
 

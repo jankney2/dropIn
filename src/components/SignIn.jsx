@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import {Link} from 'react-router-dom'
-import store, {GET_SESSION} from '../redux/store'
+import { Link, withRouter } from 'react-router-dom'
+import store, { GET_SESSION } from '../redux/store'
 
-export default class SignIn extends Component {
-  constructor() {
+class SignIn extends Component {
+  constructor(props) {
     super()
     this.state = {
       phone: '',
@@ -20,25 +20,35 @@ export default class SignIn extends Component {
     })
   }
 
-  loginHandler = (e) => {
+  loginHandler = async (e) => {
     e.preventDefault()
 
+    try {
 
-    axios.post('/auth/login', {
-      phone: this.state.phone,
-      pass: this.state.pass
-    }).then((response)=> {
+      let response = await axios.post('/auth/login', {
+        phone: this.state.phone,
+        pass: this.state.pass
+      })
 
       store.dispatch({
-        type: GET_SESSION, 
+        type: GET_SESSION,
         payload: response.data
       })
-      
-    }).catch((err => console.log(err)))
-    
+      this.props.history.push('/userHome')
+    }
+    catch{
+      throw new Error(403)
+    }
 
 
   }
+
+
+// componentDidMount() {
+//   console.log(this.props.history)
+// }
+
+
 
   render() {
     return (
@@ -57,9 +67,9 @@ export default class SignIn extends Component {
         </label>
 
 
-<Link to='/userHome' >       
- <button onClick={this.loginHandler}>Login</button> 
- </Link>
+        <Link to='/userHome'>
+          <button onClick={this.loginHandler}>Login</button>
+        </Link>
 
 
         {/* add a link below  */}
@@ -70,3 +80,6 @@ export default class SignIn extends Component {
     )
   }
 }
+
+
+export default withRouter(SignIn)
