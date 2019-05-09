@@ -11,27 +11,36 @@ export default class ListUpload extends Component {
     super()
     this.state = {
       newListName: '',
-      newListData: []
+      newListData: [],
+      individualListName: '',
+      individualListRows: [1]
     }
   }
 
 
-//the submit handler does not break the data down into the individual parts. this wil be handled on the backend. 
+  changeHandlerIndividual = (e) => {
+    this.setState({
+      [e.target.name]: e.target.value
+    })
+  }
 
- submitHandler = (e) => {
+  //the submit handler does not break the data down into the individual parts. this wil be handled on the backend. 
+
+
+  submitHandler = (e) => {
     e.preventDefault()
     let file = document.getElementById('fileUp')
     // console.log(file.files[0])
 
 
     if (!this.state.newListName) {
-     return alert("please enter a name for this list")
+      return alert("please enter a name for this list")
     }
 
 
 
 
-  Papa.parse(file.files[0], {
+    Papa.parse(file.files[0], {
       header: true,
       complete: (res) => {
         this.setState({
@@ -43,26 +52,42 @@ export default class ListUpload extends Component {
     )
 
 
-setTimeout( ()=>{
-    axios.post('/api/addList', {
-      listName: this.state.newListName,
-      properties: this.state.newListData,
-    }).catch(err=>console.log(err, 'add list failed'))}, 5000
+    setTimeout(() => {
+      axios.post('/api/addList', {
+        listName: this.state.newListName,
+        properties: this.state.newListData,
+      }).catch(err => console.log(err, 'add list failed'))
+    }, 5000
 
-)
+    )
 
-//resets list data in case you want to add another list
-// setTimeout(() => {
-//   this.setState({
-//     newListData:[]
-//   })
-  
-// }, 11);
+    //resets list data in case you want to add another list
+    // setTimeout(() => {
+    //   this.setState({
+    //     newListData:[]
+    //   })
+
+    // }, 11);
 
 
   }
 
+  submitHandlerIndividual = () => {
+    axios.post(`/api/addlistIndividual`, {
+      bathrooms: this.state.bathroomsInput,
+      bedrooms: this.state.bedroomsInput,
+      newListName: this.state.individualListName,
+      seller: this.state.sellerInput,
+      street: this.state.streetInput,
+      zip: this.state.zipInput,
+      city: this.state.cityInput,
+      state: this.state.stateInput
+    })
+  }
+
   render() {
+
+    // let mapper= this.state.
     return (
       <div>
 
@@ -70,8 +95,8 @@ setTimeout( ()=>{
 
           <h1>Create New Property List</h1>
           <p>Please Upload a CSV file in the following format:</p>
-          
-          
+
+
           {/* <table>
             <th>Owner Name</th>
             <th>Street Address</th>
@@ -106,7 +131,64 @@ setTimeout( ()=>{
 
         </div>
 
+        <div>
 
+          <h1>Only have a few properties? upload them below</h1>
+
+          <input onChange={this.changeHandlerIndividual} type="text" name="individualListName" placeholder="List Name"
+            required
+          />
+          <div>
+            <input onChange={this.changeHandlerIndividual} type="text" name="streetInput" placeholder="Street"
+              required
+            />
+
+            <input onChange={this.changeHandlerIndividual} type="text" placeholder="City"
+              name="cityInput"
+              required
+            />
+
+            <input onChange={this.changeHandlerIndividual} type="text" placeholder="State"
+              name="stateInput"
+
+              required
+            />
+
+            <input onChange={this.changeHandlerIndividual} type="text"
+              name="zipInput"
+              placeholder="Zip"
+              required
+            />
+
+            <input onChange={this.changeHandlerIndividual} type="text"
+              name="bathroomsInput"
+              placeholder="Bathrooms"
+              required
+            />
+
+            <input onChange={this.changeHandlerIndividual} type="text"
+              name="bedroomsInput"
+              placeholder="Bedrooms"
+              required
+            />
+
+            <input onChange={this.changeHandlerIndividual} type="text"
+              name="sellerInput"
+              placeholder="Seller Name"
+              required
+            />
+
+            <input onChange={this.changeHandlerIndividual} type="text"
+              name="priceInput"
+              placeholder="Price"
+              required
+            />
+            
+            </div>
+
+          <button onClick={this.submitHandlerIndividual}>Add List</button>
+
+        </div>
 
 
       </div>

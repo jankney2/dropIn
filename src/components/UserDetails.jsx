@@ -41,7 +41,7 @@ export default class UserDetails extends Component {
       emailInput: this.state.emailInput 
       
     }).then(res=>{
-      console.log(res.data[0])
+      console.log("data from put req", res.data[0])
       store.dispatch({
         //update user on store
         type: UPDATE_USER_INFO, 
@@ -80,6 +80,7 @@ else{
   return(
     <div>
 <h1>Update Your info Below</h1>
+<h1>THIS PAGE WILL UPDATE BUT IS BROKE AF</h1>
 
      <label htmlFor="newFirstName">New First name: 
     <input onChange={this.changeHandler} type="text" placeholder={this.state.userFirstName} name="firstNameInput"/>

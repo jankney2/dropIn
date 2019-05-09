@@ -95,6 +95,39 @@ module.exports = {
       res.status(200).send(response)
     }).catch(err => res.status(500).send(err))
 
+  },
+
+  addIndividual: async (req, res) => {
+    
+    let { seller, bathrooms, newListName, street, city, state, zip, bedrooms, price } = req.body
+    let { session } = req
+    let dbInstance = req.app.get('db')
+
+
+    try{
+    let newListres= await dbInstance.create_list([session.user.user_id, newListName])
+
+    let geoCodeRes = await axios.post(`https://maps.googleapis.com/maps/api/geocode/json?address=${street}+${city.replace(',', '')}+${state}+${zip.toString()}&key=${REACT_APP_GOOGLE_MAPS_KEY}`)
+
+    
+    let latitude = geoCodeRes.data.results[0].geometry.location.lat.toString()
+    
+    let longitude = geoCodeRes.data.results[0].geometry.location.lng.toString()
+    
+
+
+
+    dbInstance.add_property([street, city, state, zip, price, bathrooms, bedrooms, seller, newListName, latitude, longitude])
+
+    res.sendStatus(200)
+    }
+
+    catch {
+      throw new Error(405)
+
+    }
+
+
 
   }
 }

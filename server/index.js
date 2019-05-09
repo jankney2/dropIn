@@ -47,6 +47,7 @@ app.get('/auth/logout', authCtrl.logout)
 
 
 app.post(`/api/addList`, listCtrl.addList)
+app.post(`/api/addListIndividual`, listCtrl.addIndividual)
 app.post('/auth/login', authCtrl.login)
 app.post('/auth/register', authCtrl.register)
 
