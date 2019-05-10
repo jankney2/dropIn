@@ -2,10 +2,20 @@ const axios = require('axios')
 require('dotenv').config()
 const { REACT_APP_GOOGLE_MAPS_KEY } = process.env
 const texter= require('../Twilio/send')
-
+let iteration=0
+let textSent=false
 module.exports = {
 
   calcDist: async (req, res) => {
+++iteration
+
+
+console.log("IC:",iteration, "text status", textSent)
+if(iteration===30){
+  textSent=false
+  iteration=0
+}
+
 
     let { userId } = req.params
     let { userLat, userLong } = req.body
@@ -14,9 +24,11 @@ module.exports = {
 
     let dbResponse = await dbInstance.get_properties_by_user_id(userId)
 
-
+console.log(dbResponse)
     //for each item in the dbResponse array, run the distance matrix. if distanceVal is less than 1600, send text
+if(!textSent) {
 
+//stack filter and foreach to determine 
     dbResponse.forEach(async (el) => {
 
       //compare it to static address
@@ -46,7 +58,7 @@ module.exports = {
         }
         else {
           console.log("no properties in range")
-
+          res.sendStatus(200)
         }
       }
 
@@ -56,6 +68,9 @@ module.exports = {
 
 
     })
+
+   textSent=true 
+  }
 
     res.sendStatus(200)
 

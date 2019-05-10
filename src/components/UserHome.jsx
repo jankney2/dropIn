@@ -13,12 +13,25 @@ constructor() {
     user: reduxState.user,
     userLists: reduxState.userPropLists,
     userTotal:0, 
-    userLocation: {}
+    userLocation: {}, 
+    activeLat:'', 
+    activeLong:''
   }
 }
 //this is where you'll grab the lists for the user based off of the user's id (which you can pull off of the user object on state)
 componentDidMount() {
-//this doesn't work for some reason when you refresh the page
+
+
+  //active location grab? untested. 
+// navigator.geolocation.watchPosition((position)=>{
+//   this.setState({
+//     activeLat: position.coords.latitude, 
+//     activeLong: position.coords.longitude
+//   })
+// })
+
+
+  //this doesn't work for some reason when you refresh the page
   axios.get(`/api/userTotal/${this.state.user.user_id}`).then(res=> {
     this.setState({
       userTotal:res.data.count
@@ -66,7 +79,7 @@ render() {
          </li>
       
       <li>
-        <Link to='/listDisplay'>Display My Lists
+        <Link to='/listDisplay'>Display My properties
         </Link>
       
          </li>
@@ -82,7 +95,13 @@ render() {
 
 
 <button onClick= {()=>{
+
+setInterval(
+()=>{
+
   axios.post(`/api/test/${this.state.user.user_id}`, this.state.userLocation ).then(res=>console.log(res)).catch(err=>alert(err))
+}, 1000)
+
 }}>Click me to make location request</button>
 
 

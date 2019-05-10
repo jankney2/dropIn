@@ -26,7 +26,7 @@ export default class ListUpload extends Component {
 
   //the submit handler does not break the data down into the individual parts. this wil be handled on the backend. 
 
-
+//there are different submit handlers for the individual and csv data. 
   submitHandler = (e) => {
     e.preventDefault()
     let file = document.getElementById('fileUp')
@@ -36,9 +36,6 @@ export default class ListUpload extends Component {
     if (!this.state.newListName) {
       return alert("please enter a name for this list")
     }
-
-
-
 
     Papa.parse(file.files[0], {
       header: true,
@@ -51,23 +48,12 @@ export default class ListUpload extends Component {
     }
     )
 
-
     setTimeout(() => {
       axios.post('/api/addList', {
         listName: this.state.newListName,
         properties: this.state.newListData,
-      }).catch(err => console.log(err, 'add list failed'))
-    }, 5000
-
-    )
-
-    //resets list data in case you want to add another list
-    // setTimeout(() => {
-    //   this.setState({
-    //     newListData:[]
-    //   })
-
-    // }, 11);
+      }).then(()=>this.routeToHome()).catch(err => console.log(err, 'add list failed'))
+    }, 1000)
 
 
   }
@@ -81,13 +67,86 @@ export default class ListUpload extends Component {
       street: this.state.streetInput,
       zip: this.state.zipInput,
       city: this.state.cityInput,
-      state: this.state.stateInput
+      state: this.state.stateInput, 
+      price: this.state.priceInput
+    }).then(()=>{
+      this.setState({
+        bathroomsInput:'', 
+        bedroomsInput:'', 
+        individualListName:'', 
+        sellerInput:'', 
+        zipInput:'', 
+        cityInput:'', 
+        stateInput:'', 
+      })
+
+      this.routeToHome()
+
     })
+
+  }
+
+
+  routeToHome=()=>{
+    this.props.history.push('/userHome')
   }
 
   render() {
 
-    // let mapper= this.state.
+    let mapper= this.state.individualListRows.map((el)=> {
+      return(
+        <div>
+        <input onChange={this.changeHandlerIndividual} type="text" name="streetInput" placeholder="Street"
+          required
+        />
+
+        <input onChange={this.changeHandlerIndividual} type="text" placeholder="City"
+          name="cityInput"
+          required
+        />
+
+        <input onChange={this.changeHandlerIndividual} type="text" placeholder="State"
+          name="stateInput"
+
+          required
+        />
+
+        <input onChange={this.changeHandlerIndividual} type="text"
+          name="zipInput"
+          placeholder="Zip"
+          required
+        />
+
+        <input onChange={this.changeHandlerIndividual} type="text"
+          name="bathroomsInput"
+          placeholder="Bathrooms"
+          required
+        />
+
+        <input onChange={this.changeHandlerIndividual} type="text"
+          name="bedroomsInput"
+          placeholder="Bedrooms"
+          required
+        />
+
+        <input onChange={this.changeHandlerIndividual} type="text"
+          name="sellerInput"
+          placeholder="Seller Name"
+          required
+        />
+
+        <input onChange={this.changeHandlerIndividual} type="text"
+          name="priceInput"
+          placeholder="Price"
+          required
+        />
+        
+        </div>
+      )
+    })
+
+
+
     return (
       <div>
 
@@ -95,23 +154,6 @@ export default class ListUpload extends Component {
 
           <h1>Create New Property List</h1>
           <p>Please Upload a CSV file in the following format:</p>
-
-
-          {/* <table>
-            <th>Owner Name</th>
-            <th>Street Address</th>
-            <th>City</th>
-            <th>State</th>
-            <th>Zip code</th>
-
-            <tr>
-              <td>John Smith</td>
-              <td>123 Pleasant Way</td>
-              <td>Provo</td>
-              <td>UT</td>
-              <td>84601</td>
-            </tr>
-          </table> */}
 
 
           <div className="fileInputCont">
@@ -138,53 +180,8 @@ export default class ListUpload extends Component {
           <input onChange={this.changeHandlerIndividual} type="text" name="individualListName" placeholder="List Name"
             required
           />
-          <div>
-            <input onChange={this.changeHandlerIndividual} type="text" name="streetInput" placeholder="Street"
-              required
-            />
-
-            <input onChange={this.changeHandlerIndividual} type="text" placeholder="City"
-              name="cityInput"
-              required
-            />
-
-            <input onChange={this.changeHandlerIndividual} type="text" placeholder="State"
-              name="stateInput"
-
-              required
-            />
-
-            <input onChange={this.changeHandlerIndividual} type="text"
-              name="zipInput"
-              placeholder="Zip"
-              required
-            />
-
-            <input onChange={this.changeHandlerIndividual} type="text"
-              name="bathroomsInput"
-              placeholder="Bathrooms"
-              required
-            />
-
-            <input onChange={this.changeHandlerIndividual} type="text"
-              name="bedroomsInput"
-              placeholder="Bedrooms"
-              required
-            />
-
-            <input onChange={this.changeHandlerIndividual} type="text"
-              name="sellerInput"
-              placeholder="Seller Name"
-              required
-            />
-
-            <input onChange={this.changeHandlerIndividual} type="text"
-              name="priceInput"
-              placeholder="Price"
-              required
-            />
-            
-            </div>
+         {mapper}
+         
 
           <button onClick={this.submitHandlerIndividual}>Add List</button>
 

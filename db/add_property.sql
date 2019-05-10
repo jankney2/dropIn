@@ -9,7 +9,9 @@ insert into properties (
 	seller,
   property_list_id, 
   latitude, 
-  longitude
+  longitude, 
+  is_tracked 
+  
 
 ) values (
   $1, 
@@ -22,7 +24,8 @@ insert into properties (
   $8, 
   (select list_id from property_lists where list_name=$9 limit 1), 
   $10, 
-  $11
+  $11, 
+  TRUE
 )
 
 
