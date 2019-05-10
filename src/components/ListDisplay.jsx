@@ -108,7 +108,7 @@ export default class ListDisplay extends Component {
         <div>
 
           <h1>Property Lists</h1>
-          <button>Save Changes</button>
+
 
 
           {propertyMap}

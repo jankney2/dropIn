@@ -12,10 +12,12 @@ import UserDetails from './components/UserDetails'
 
 export default (
 
-
   <Switch >
 
-    <Route exact path='/' component={Home} />
+
+<Route exact path='/' component={Home}/>
+
+
     <Route exact path='/1' component={GM} />
     <Route path='/register' component={SignUp} />
     <Route path='/userHome' component={UserHome} />

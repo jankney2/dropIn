@@ -13,6 +13,9 @@ export const GET_SESSION ='GET_SESSION'
 export const GET_USER_PROP_LISTS='GET_USER_PROP_LISTS'
 export const UPDATE_USER_INFO = 'UPDATE_USER_INFO'
 export const GET_SESSION_REG='GET_SESSION_REG'
+export const LOGOUT="LOGOUT"
+
+
 function reducer(state = initialState, action) {
   
   const {type, payload}= action
@@ -37,6 +40,9 @@ function reducer(state = initialState, action) {
 
     case 'REFRESH_SESSION':
     return {...state, user:payload}
+
+    case LOGOUT:
+    return {...state, isLoggedIn:false}
 
 
     default: 
