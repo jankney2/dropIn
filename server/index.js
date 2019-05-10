@@ -43,7 +43,7 @@ app.get(`/api/getUser/:id`, userCtrl.getUser)
 app.get('/api/userLists/:id', listCtrl.getLists)
 app.get('/api/properties/:listId', listCtrl.getProperties)
 app.get('/auth/logout', authCtrl.logout)
-
+app.get('/api/userProperties/:id', listCtrl.getProperties)
 
 
 app.post(`/api/addList`, listCtrl.addList)

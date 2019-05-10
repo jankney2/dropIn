@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import store from '../redux/store'
-import List from './List'
 import axios from 'axios'
 
 
@@ -10,8 +9,8 @@ export default class ListDisplay extends Component {
     super()
     this.state = {
       user: reduxState.user,
-      userLists: reduxState.userPropLists
-      // userLists: [1,2,3,4,5]
+      userProperties:[]
+      
     }
   }
 
@@ -20,10 +19,10 @@ export default class ListDisplay extends Component {
 
 
 
-    axios.get(`/api/userLists/${this.state.user.user_id}`).then(res => {
+    axios.get(`/api/userProperties/${this.state.user.user_id}`).then(res => {
 
       this.setState({
-        userLists: res.data
+        userProperties: res.data
       })
     }).catch(err => console.log(err, 'frontend get failed'))
   }
@@ -32,11 +31,10 @@ export default class ListDisplay extends Component {
     
     
     render() {
-      var map, infoWindow;
       
-    let listMap = this.state.userLists.map(el => {
-      return <List key={el.list_id} name={el.list_name} deleteId={el.list_id} />
-    })
+   let propertyMap= this.state.userProperties.map(el=>{
+     return <div>Barf</div>
+   })
 
     return (
       <div>
@@ -44,8 +42,8 @@ export default class ListDisplay extends Component {
         <div>
 
           <h1>Property Lists</h1>
+          {propertyMap}
 
-          {listMap}
         </div>
 
       </div>

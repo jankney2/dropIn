@@ -73,9 +73,9 @@ module.exports = {
 
   getProperties: (req, res) => {
     let dbInstance = req.app.get('db')
-    let { listId } = req.params
+    let { id } = req.params
 
-    dbInstance.get_properties_by_list_id(listId).then(response => {
+    dbInstance.get_properties_by_user_id(id).then(response => {
 
       res.status(200).send(response)
     }).catch(err => {
