@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import store from '../redux/store'
 import axios from 'axios'
+import Property from './Property';
 
 
 export default class ListDisplay extends Component {
@@ -13,6 +14,13 @@ export default class ListDisplay extends Component {
       
     }
   }
+
+deleter= (deleteId, userId)=>{
+  axios.delete(`/properties/deleteProperty/${deleteId}`).then((res)=> {this.setState({
+    userProperties:res.data
+  })} )
+}
+
 
   componentDidMount() {
 
@@ -33,7 +41,21 @@ export default class ListDisplay extends Component {
     render() {
       
    let propertyMap= this.state.userProperties.map(el=>{
-     return <div>Barf</div>
+     return <Property 
+     key={el.property_id}
+     deleteId={el.property_id}
+     price={el.price}
+     street={el.street}
+     seller={el.seller}
+     state={el.state}
+     zip={el.zip}
+     userNotes={el.user_notes}
+     tracker={el.is_tracked}
+     bedrooms={el.bedrooms}
+     bathrooms={el.bathrooms}
+     deleter={this.deleter}
+     user={this.state.user}
+     />
    })
 
     return (
@@ -42,6 +64,9 @@ export default class ListDisplay extends Component {
         <div>
 
           <h1>Property Lists</h1>
+          <button>Save Changes</button>
+          
+          
           {propertyMap}
 
         </div>

@@ -54,6 +54,6 @@ app.post('/auth/register', authCtrl.register)
 
 //fix this one to send as response the new lsit 
 app.delete('/api/userLists/:listId', listCtrl.deleteList)
-
+app.delete('/properties/deleteProperty/:deleteId', listCtrl.deleteProperty)
 
 app.listen(SERVER_PORT, ()=> console.log('listening on ', SERVER_PORT))

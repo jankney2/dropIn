@@ -129,5 +129,31 @@ module.exports = {
 
 
 
-  }
+  }, 
+
+deleteProperty: async (req, res)=> {
+  let dbInstance= req.app.get('db')
+  let {deleteId}=req.params
+  let {user} = req.session
+try{
+
+
+await  dbInstance.delete_property_by_id(deleteId)
+
+  
+  let newProperties= await dbInstance.get_properties_by_user_id(user.user_id)
+  console.log( newProperties)
+  
+  
+  res.status(200).send(newProperties)
+
+}
+
+catch{
+  throw new Error(409);
+  console.error()
+}
+
+}
+
 }
