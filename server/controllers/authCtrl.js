@@ -52,7 +52,7 @@ module.exports = {
     phone = +phone
     let exists = await dbInstance.find_by_phone(phone)
     exists = +exists[0].count
-    console.log(exists)
+
     //if user does not exist
     if (exists !== 0) {
       return res.sendStatus(409)
@@ -65,16 +65,15 @@ module.exports = {
 
     const user = await dbInstance.create_user([firstName, lastName, email, phone, hashedPass])
 
-    console.log(user)
+    console.log(user[0])
     //log in user automatically
 
     session.user = {
-      phone,
-      hashedPass,
-      id: exists.user_id
+      user:user[0]
+
     }
 
-    res.sendStatus(200)
+    res.status(200).send(session)
 
   },
 

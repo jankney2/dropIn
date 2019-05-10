@@ -12,7 +12,7 @@ const initialState= {
 export const GET_SESSION ='GET_SESSION'
 export const GET_USER_PROP_LISTS='GET_USER_PROP_LISTS'
 export const UPDATE_USER_INFO = 'UPDATE_USER_INFO'
-
+export const GET_SESSION_REG='GET_SESSION_REG'
 function reducer(state = initialState, action) {
   
   const {type, payload}= action
@@ -21,8 +21,12 @@ function reducer(state = initialState, action) {
 
 
     case GET_SESSION:
-
+    // console.log(payload.user)
     return { ...state, user: payload.user, isLoggedIn:true }
+
+    case GET_SESSION_REG:
+    console.log("register update payload", payload)
+    return { ...state, user: payload, isLoggedIn:true }
 
     case GET_USER_PROP_LISTS:
 //something is wrong here
@@ -30,6 +34,10 @@ function reducer(state = initialState, action) {
 
     case UPDATE_USER_INFO:
     return {...state, user:payload}
+
+    case 'REFRESH_SESSION':
+    return {...state, user:payload}
+
 
     default: 
     return state

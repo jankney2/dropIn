@@ -44,11 +44,6 @@ class SignIn extends Component {
   }
 
 
-// componentDidMount() {
-//   console.log(this.props.history)
-// }
-
-
 
   render() {
     return (

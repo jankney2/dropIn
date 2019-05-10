@@ -135,10 +135,14 @@ deleteProperty: async (req, res)=> {
   let dbInstance= req.app.get('db')
   let {deleteId}=req.params
   let {user} = req.session
-try{
 
 
 await  dbInstance.delete_property_by_id(deleteId)
+
+
+  try{
+
+
 
   
   let newProperties= await dbInstance.get_properties_by_user_id(user.user_id)

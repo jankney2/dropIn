@@ -34,7 +34,9 @@ app.use(session({
       }
 }))
 
-
+app.get('/api/userSession', (req, res)=>{
+  res.status(200).send(req.session)
+})
 app.post(`/api/test/:userId`, distanceCalc.calcDist)
 
 app.put('/api/users/updateInfo/:userId', userCtrl.updateUserInfo)

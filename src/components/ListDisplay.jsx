@@ -16,9 +16,12 @@ export default class ListDisplay extends Component {
   }
 
 deleter= (deleteId, userId)=>{
-  axios.delete(`/properties/deleteProperty/${deleteId}`).then((res)=> {this.setState({
+  axios.delete(`/properties/deleteProperty/${deleteId}`).then((res)=> {
+    
+    console.log(res)
+    this.setState({
     userProperties:res.data
-  })} )
+  })} ).catch(err=>console.log("deleter Err", err))
 }
 
 
