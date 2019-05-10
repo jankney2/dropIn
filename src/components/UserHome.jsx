@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import store, { GET_USER_PROP_LISTS, GET_SESSION } from '../redux/store'
+import store from '../redux/store'
 import axios from 'axios'
 import {Link} from 'react-router-dom'
 

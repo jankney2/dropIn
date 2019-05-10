@@ -146,7 +146,7 @@ await  dbInstance.delete_property_by_id(deleteId)
 
   
   let newProperties= await dbInstance.get_properties_by_user_id(user.user_id)
-  console.log( newProperties)
+
   
   
   res.status(200).send(newProperties)
@@ -157,6 +157,31 @@ catch{
   throw new Error(409);
   console.error()
 }
+
+},
+
+editNote: (req, res)=> {
+  let dbInstance= req.app.get('db')
+  let {noteId:id}= req.params
+  let {user}=req.session
+  console.log(req.body, id)
+
+  dbInstance.note_update([req.body.noteText, id]).then(()=>{
+
+    dbInstance.get_properties_by_user_id(user.user_id).then((response)=>{
+
+      res.status(200).send(response)
+  
+    }).catch(err=>response.send(err))
+
+
+  }).catch(err=>res.send(err))
+  
+  
+  
+  
+
+
 
 }
 

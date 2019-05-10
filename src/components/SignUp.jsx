@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import axios from 'axios'
-import store, { GET_SESSION_REG, GET_SESSION } from '../redux/store';
+import store, {  GET_SESSION } from '../redux/store';
 
 
 export default class SignUp extends Component {

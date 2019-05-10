@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import Papa from 'papaparse'
+import store from '../redux/store'
 
 //known bug: keys in new list data have spaces in their names. 
 
@@ -18,13 +19,36 @@ export default class ListUpload extends Component {
   }
 
 
+componentDidMount() {
+  axios.get('/api/userSession').then(res=>{
+ 
+    console.log(res.data.user)
+     store.dispatch(
+      {
+        type: 'REFRESH_SESSION', 
+        payload: res.data.user
+      }
+      )
+   
+      let reduxState= store.getState()
+   
+      this.setState({
+        user: reduxState.user
+      })
+   
+   }).catch(err=>console.log('error on session request', err))
+}
+
+
+
   changeHandlerIndividual = (e) => {
     this.setState({
       [e.target.name]: e.target.value
     })
   }
 
-  //the submit handler does not break the data down into the individual parts. this wil be handled on the backend. 
+
+
 
 //there are different submit handlers for the individual and csv data. 
   submitHandler = (e) => {

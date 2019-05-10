@@ -52,7 +52,7 @@ app.post(`/api/addList`, listCtrl.addList)
 app.post(`/api/addListIndividual`, listCtrl.addIndividual)
 app.post('/auth/login', authCtrl.login)
 app.post('/auth/register', authCtrl.register)
-
+app.put('/properties/addNote/:noteId', listCtrl.editNote)
 
 //fix this one to send as response the new lsit 
 app.delete('/api/userLists/:listId', listCtrl.deleteList)
