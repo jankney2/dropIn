@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import axios from 'axios'
-import store, {  GET_SESSION } from '../redux/store';
+import store, {  REG_LOGIN } from '../redux/store';
 
 
 export default class SignUp extends Component {
@@ -26,7 +26,7 @@ handleChange= (e)=> {
 
 registerHandler= async (e)=> {
 
-  e.preventDefault()
+  // e.preventDefault()
 try{
 let response= await axios.post('/auth/register', {
   phone: this.state.user_phone, 
@@ -35,12 +35,12 @@ let response= await axios.post('/auth/register', {
   email: this.state.user_email, 
   lastName: this.state.last_name
 })
+console.log('register res', response)
+//     store.dispatch({
+//       type: REG_LOGIN, 
+//       payload: response.data.user
+//     })
 
-    store.dispatch({
-      type: GET_SESSION, 
-      payload: response.data[0]
-    })
-    
     this.props.history.push('/userHome')
   }
 

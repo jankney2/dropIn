@@ -16,21 +16,25 @@ module.exports = {
     try {
       let phone = await dbInstance.find_user_by_phone([passPhone])
       // console.log(phone)
+
+      phone[0].isLoggedIn=true
       session.user = phone[0]
-
+      
       const authenticated = bcrypt.compareSync(req.body.pass, phone[0].pass_hash)
-
-
-
+      
+      
+      
       if (authenticated) {
-        // console.log('if hit')
+        console.log('if hit')
+        
+        delete session.user.pass_hash
+
 
         res.status(200).send(session)
-        // console.log(session)
       } else {
         throw new Error(401)
       }
-
+      
     } catch  {
       res.sendStatus(500)
       console.log(res)
@@ -68,11 +72,13 @@ module.exports = {
     console.log(user[0])
     //log in user automatically
 
-    session.user = {
-      user:user[0]
+user[0].isLoggedIn=true
 
-    }
+delete user[0].pass_hash
 
+    session.user = user[0], 
+      
+    
     res.status(200).send(session)
 
   },

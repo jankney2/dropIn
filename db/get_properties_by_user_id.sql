@@ -4,4 +4,5 @@ on p.property_list_id=p_l.list_id
 
 where p_l.uploader_id=$1 and is_tracked='t'
 
-limit 20 order by p.property_id asc
+ order by p.property_id asc
+ limit 20

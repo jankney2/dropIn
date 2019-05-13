@@ -17,12 +17,18 @@ export default class NavBar extends Component{
 <button onClick={()=>{
   axios.get('auth/logout').then(()=>{
     store.dispatch({
-      action:LOGOUT 
+      type: LOGOUT 
       
     })
   })
 }}>Logout</button>
 </Link>
+
+<Link to='/userHome'>
+<button >Home</button>
+</Link>
+
+
       </div>
     )
   }

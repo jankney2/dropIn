@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import { Link, withRouter } from 'react-router-dom'
-import store, { GET_SESSION } from '../redux/store'
+import store, { GET_SESSION, LOGIN } from '../redux/store'
 
 class SignIn extends Component {
   constructor(props) {
@@ -29,11 +29,8 @@ class SignIn extends Component {
         phone: this.state.phone,
         pass: this.state.pass
       })
+      console.log("login Res", response)
 
-      store.dispatch({
-        type: GET_SESSION,
-        payload: response.data
-      })
       this.props.history.push('/userHome')
     }
     catch{

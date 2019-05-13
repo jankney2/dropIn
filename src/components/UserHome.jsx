@@ -21,47 +21,51 @@ constructor() {
 //this is where you'll grab the lists for the user based off of the user's id (which you can pull off of the user object on state)
 componentDidMount() {
 
-  //active location grab? untested. 
+const reduxState=store.getState()
+
+
+
+//active location grab? untested. 
 // navigator.geolocation.watchPosition((position)=>{
-//   this.setState({
-//     activeLat: position.coords.latitude, 
-//     activeLong: position.coords.longitude
-//   })
-// })
+  //   this.setState({
+    //     activeLat: position.coords.latitude, 
+    //     activeLong: position.coords.longitude
+    //   })
+    // })
+    
+    
+    axios.get('/api/userSession').then(res=>{
+      console.log(res.data)
+      
+      store.dispatch(
+        {
+          type: 'REFRESH_SESSION', 
+          payload: res.data.user
+        }
+        )
+        
+        let reduxState= store.getState()
+        console.log("redux State on home", reduxState)
+        this.setState({
+          user: reduxState.user
+        })
+        
+        // if(!reduxState.user.isLoggedIn){
+        //       this.props.history.push('/')
+        //       alert("please login to view this page")
+        //     }
+        
+        
+        
+      axios.get(`/api/userTotal/${this.state.user.user_id}`).then(res=> {
+        this.setState({
+          userTotal:res.data.count
+        })
+      })
 
 
-axios.get('/api/userSession').then(res=>{
- 
- console.log(res.data.user)
-  store.dispatch(
-   {
-     type: 'REFRESH_SESSION', 
-     payload: res.data.user
-   }
-   )
-
-   let reduxState= store.getState()
-
-   this.setState({
-     user: reduxState.user
-   })
-
-}).catch(err=>console.log('error on session request', err))
-
-
-  axios.get(`/api/userTotal/${this.state.user.user_id}`).then(res=> {
-    this.setState({
-      userTotal:res.data.count
-    })
-  })
-
-  // axios.get(`/api/userLists/${this.state.user.user_id}`).then(res=>{
-
-  //   store.dispatch({
-  //     type: GET_USER_PROP_LISTS, 
-  //     payload: res.data
-  //   })
-  // }).catch(err=>console.log(err, 'frontend get failed'))
+  }).catch(err=>console.log('error on session request', err))
+  
 
 
   navigator.geolocation.getCurrentPosition((position)=>{
@@ -75,11 +79,13 @@ axios.get('/api/userSession').then(res=>{
     })
   })
 
+
+
 }
 
 
 render() {
-
+  
   return(
     <div>
 

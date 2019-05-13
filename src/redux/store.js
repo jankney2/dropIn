@@ -6,7 +6,7 @@ import {createStore} from 'redux'
 const initialState= {
   user: {},
   userPropLists: [], 
-  isLoggedIn: false
+
 }
 
 export const GET_SESSION ='GET_SESSION'
@@ -14,6 +14,8 @@ export const GET_USER_PROP_LISTS='GET_USER_PROP_LISTS'
 export const UPDATE_USER_INFO = 'UPDATE_USER_INFO'
 export const GET_SESSION_REG='GET_SESSION_REG'
 export const LOGOUT="LOGOUT"
+export const LOGIN= 'LOGIN'
+export const REG_LOGIN='REG_LOGIN'
 
 
 function reducer(state = initialState, action) {
@@ -24,12 +26,12 @@ function reducer(state = initialState, action) {
 
 
     case GET_SESSION:
-    // console.log(payload.user)
-    return { ...state, user: payload.user, isLoggedIn:true }
+    // console.log("Payload", payload.user)
+    return { ...state, user: payload.user}
 
     case GET_SESSION_REG:
     console.log("register update payload", payload)
-    return { ...state, user: payload, isLoggedIn:true }
+    return { ...state, user: payload }
 
     case GET_USER_PROP_LISTS:
 //something is wrong here
@@ -42,7 +44,14 @@ function reducer(state = initialState, action) {
     return {...state, user:payload}
 
     case LOGOUT:
-    return {...state, isLoggedIn:false}
+    return {...state, user:{}}
+
+    case LOGIN: 
+    return {...state}
+
+    case REG_LOGIN:
+    return {...state, user:payload}
+
 
 
     default: 

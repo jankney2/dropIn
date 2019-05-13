@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 
+
 import routes from './routes'
 import {HashRouter, Route} from 'react-router-dom'
 import Home from './components/Home'
@@ -10,9 +11,6 @@ import store from './redux/store'
 function App() {
 
 
-let reduxState=store.getState()
-
-if(reduxState.isLoggedIn){
 
   return (
 
@@ -30,21 +28,6 @@ if(reduxState.isLoggedIn){
     </div>
   );
 
-  }
-  
-  return (
-    <div>
-<HashRouter >
-<NavBar/>
-
- <Home />
-
-
-</HashRouter>
-
-
-    </div>
-  )
 
 }
 

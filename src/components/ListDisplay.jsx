@@ -33,7 +33,7 @@ export default class ListDisplay extends Component {
     ).then((res) => {
 
       this.setState({
-        edit: false,
+        // edit: false,
         userProperties: res.data
       })
     }).catch(err => console.log(err))
@@ -60,17 +60,17 @@ export default class ListDisplay extends Component {
       this.setState({
         user: reduxState.user
       })
+      
+          axios.get(`/api/userProperties/${this.state.user.user_id}`).then(res => {
+      
+            this.setState({
+              userProperties: res.data
+            })
+          }).catch(err => console.log(err, 'frontend get failed'))
 
     }).catch(err => console.log('error on session request', err))
 
 
-
-    axios.get(`/api/userProperties/${this.state.user.user_id}`).then(res => {
-
-      this.setState({
-        userProperties: res.data
-      })
-    }).catch(err => console.log(err, 'frontend get failed'))
 
 
 

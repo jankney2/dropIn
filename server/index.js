@@ -4,15 +4,15 @@ require('dotenv').config()
 const express= require('express')
 const app= express()
 const session= require('express-session')
-const connectRedis= require('connect-redis')
+const {SESSION_SECRET, SERVER_PORT, CONNECTION_STRING, STRIPE_SAMPLE }= process.env
+const stripe= require('stripe')(STRIPE_SAMPLE)
 
 const massive= require('massive')
-const {SESSION_SECRET, SERVER_PORT, CONNECTION_STRING}= process.env
 const userCtrl= require('./controllers/userCtrl')
 const listCtrl= require('./controllers/listCtrl')
 const authCtrl=require('./controllers/authCtrl')
 const distanceCalc= require('./controllers/distanceCalc')
-const RedisStore=connectRedis(session)
+
 
 
 
@@ -27,7 +27,7 @@ app.use(express.json())
 app.use(session({
   secret: SESSION_SECRET, 
   saveUninitialized:false, 
-  // store: new RedisStore({}),
+
   resave: false, 
   cookie: {
     maxAge:1000*60*60*24,
@@ -35,6 +35,9 @@ app.use(session({
 }))
 
 app.get('/api/userSession', (req, res)=>{
+  
+  delete req.session.user.pass_hash
+
   res.status(200).send(req.session)
 })
 app.post(`/api/test/:userId`, distanceCalc.calcDist)
@@ -49,6 +52,23 @@ app.get('/api/userProperties/:id', listCtrl.getProperties)
 
 
 app.post(`/api/addList`, listCtrl.addList)
+app.post("/charge", async (req, res) => {
+  
+
+  try {
+    let {status} = await stripe.charges.create({
+      amount: 2000,
+      currency: "usd",
+      description: "An example charge",
+      source: req.body
+    });
+    console.log(status)
+    res.send(status);
+  } catch (err) {
+    res.status(500).end();
+  }
+});
+
 app.post(`/api/addListIndividual`, listCtrl.addIndividual)
 app.post('/auth/login', authCtrl.login)
 app.post('/auth/register', authCtrl.register)
