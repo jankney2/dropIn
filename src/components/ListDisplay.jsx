@@ -16,14 +16,16 @@ export default class ListDisplay extends Component {
   }
 
 
-  moveHandler= async (id, status) =>{
+  moveHandler= async (propId, status, userId) =>{
   console.log(status)
     try {
-
-     let response= await  axios.put(`/properties/${id}`, {trackingStatus:!status})
+console.log(this.state.user.user_id)
+     let response= await  axios.put(`/properties/${propId}`, {trackingStatus:!status, 
+    userId:this.state.user.user_id
+    })
       
       this.setState({
-        userProperties:response.data
+        userProperties:[response.data]
       })
   
     } catch (error) {

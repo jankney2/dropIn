@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs')
 
 module.exports = {
   login: async (req, res) => {
-    console.log('hit login')
+    // console.log('hit login')
     //check for user by phone number against database
     //do not destructure password! 
     let { phone: passPhone } = req.body
@@ -36,7 +36,7 @@ module.exports = {
       
     } catch  {
       res.sendStatus(500)
-      console.log(res)
+
     }
 
 
@@ -68,7 +68,7 @@ module.exports = {
 
     const user = await dbInstance.create_user([firstName, lastName, email, phone, hashedPass])
 
-    console.log(user[0])
+    // console.log(user[0])
     //log in user automatically
 
 user[0].isLoggedIn=true

@@ -187,22 +187,22 @@ editNote: (req, res)=> {
 
 changeTracking: async (req, res)=>{
 
-let {trackingStatus}= req.body
-let {id}= req.params
+let {trackingStatus, userId}= req.body
+let {id:propId}= req.params
 let dbInstance= req.app.get('db')
 
+console.log('tracking USER ID', userId)
 
 try {
   
-  await dbInstance.update_property_tracking_status([trackingStatus, id])
+  await dbInstance.update_property_tracking_status([trackingStatus, propId])
   
   
   
-  
-  let response= await dbInstance.get_properties_by_user_id(id)
+  let response= await dbInstance.get_properties_by_user_id(userId)
   
   console.log('trackingres', response)
-  res.status(200).send(response)
+  res.status(200).send(response[0])
 
 } catch (error) {
   res.send(error)

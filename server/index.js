@@ -62,7 +62,7 @@ app.post(`/api/addList`, listCtrl.addList)
 app.post("/charge", async (req, res) => {
   app.use(require('body-parser').text())
   try {
-    console.log(req.body)
+    // console.log(req.body)
     let {status} = await stripe.charges.create({
       amount: 2000,
       currency: "usd",
