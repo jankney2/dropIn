@@ -200,9 +200,9 @@ try {
   
   
   let response= await dbInstance.get_properties_by_user_id(userId)
-  
-  console.log('trackingres', response)
-  res.status(200).send(response[0])
+  console.log('1111111', response)
+
+  res.status(200).send(response)
 
 } catch (error) {
   res.send(error)

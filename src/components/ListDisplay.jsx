@@ -16,16 +16,16 @@ export default class ListDisplay extends Component {
   }
 
 
-  moveHandler= async (propId, status, userId) =>{
-  console.log(status)
+  moveHandler= async (propId, status) =>{
+
     try {
-console.log(this.state.user.user_id)
+
      let response= await  axios.put(`/properties/${propId}`, {trackingStatus:!status, 
     userId:this.state.user.user_id
     })
-      
+
       this.setState({
-        userProperties:[response.data]
+        userProperties:response.data
       })
   
     } catch (error) {
@@ -39,7 +39,7 @@ console.log(this.state.user.user_id)
   deleter = (deleteId, userId) => {
     axios.delete(`/properties/deleteProperty/${deleteId}`).then((res) => {
 
-      console.log(res)
+      // console.log(res)
       this.setState({
         userProperties: res.data
       })
@@ -91,11 +91,6 @@ console.log(this.state.user.user_id)
 
     }).catch(err => console.log('error on session request', err))
 
-
-
-
-
-
   }
 
 
@@ -104,7 +99,7 @@ console.log(this.state.user.user_id)
   render() {
 
     let trackedPropertyMap = this.state.userProperties.map(el => {
-
+      // console.log(this.state)
       if(el.is_tracked){
       return <Property
         moveHandler={this.moveHandler}
