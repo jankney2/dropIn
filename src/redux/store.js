@@ -30,7 +30,7 @@ function reducer(state = initialState, action) {
     return { ...state, user: payload.user}
 
     case GET_SESSION_REG:
-    console.log("register update payload", payload)
+
     return { ...state, user: payload }
 
     case GET_USER_PROP_LISTS:

@@ -20,23 +20,24 @@ constructor() {
 }
 //this is where you'll grab the lists for the user based off of the user's id (which you can pull off of the user object on state)
 componentDidMount() {
-
-const reduxState=store.getState()
-
-
-
-//active location grab? untested. 
-// navigator.geolocation.watchPosition((position)=>{
-  //   this.setState({
-    //     activeLat: position.coords.latitude, 
-    //     activeLong: position.coords.longitude
-    //   })
-    // })
-    
-    
-    axios.get('/api/userSession').then(res=>{
-      console.log(res.data)
+  
+  
+  
+  
+  
+  //active location grab? untested. 
+  // navigator.geolocation.watchPosition((position)=>{
+    //   this.setState({
+      //     activeLat: position.coords.latitude, 
+      //     activeLong: position.coords.longitude
+      //   })
+      // })
       
+      
+      axios.get('/api/userSession').then(res=>{
+        
+
+
       store.dispatch(
         {
           type: 'REFRESH_SESSION', 
@@ -44,28 +45,28 @@ const reduxState=store.getState()
         }
         )
         
-        let reduxState= store.getState()
-        console.log("redux State on home", reduxState)
+        
+        
         this.setState({
-          user: reduxState.user
+          user: res.data.user
         })
-        
-        // if(!reduxState.user.isLoggedIn){
-        //       this.props.history.push('/')
-        //       alert("please login to view this page")
-        //     }
-        
-        
-        
-      axios.get(`/api/userTotal/${this.state.user.user_id}`).then(res=> {
-        this.setState({
-          userTotal:res.data.count
-        })
-      })
+          
+          axios.get(`/api/userTotal/${res.data.user.user_id}`).then(response=> {
+            this.setState({
+              userTotal:response.data.count
+            })
+          }).catch(err=>console.log(err, "userTotal req failed"))
 
+        
+      }).catch(err=>
+        
 
-  }).catch(err=>console.log('error on session request', err))
-  
+          
+
+        console.log('error on session request', err)
+        
+        )
+      
 
 
   navigator.geolocation.getCurrentPosition((position)=>{

@@ -1,0 +1,35 @@
+/* colors:
+
+grain: #d7cec7
+grain: #565656
+grain: #763237
+grain: #c09f80
+
+*/
+
+
+@import url('https://fonts.googleapis.com/css?family=Comfortaa:400,500,600');
+
+.navBar {
+  display: flex;
+  justify-content: space-around;
+  font-size: 22px; 
+  font-family: 'Comfortaa', cursive;
+  font-weight: 600;
+  text-transform: lowercase;
+}
+
+.navBar button {
+  font-size:15px;
+  font-family: 'Comfortaa', cursive;
+}
+
+.navBar * {
+  padding: 2%;
+}
+
+.navLinkHolder {
+  display: flex;
+  justify-content: space-between;
+}
+

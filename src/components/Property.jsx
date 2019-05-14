@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 
 import { withRouter } from 'react-router-dom'
-import axios from 'axios';
 
 class Property extends Component {
 
@@ -38,7 +37,7 @@ this.setState({
 
         }}>
 
-          <p>Tracking: <input type="checkbox" /> </p>
+          <p>Tracking: <input type="checkbox" checked/> </p>
           <p>Seller:{this.props.seller}</p>
           <p>Price:{this.props.price}</p>
           <p>Address:{this.props.street} {this.props.city} {this.props.state} {this.props.zip}</p>

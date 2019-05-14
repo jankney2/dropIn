@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import { Link, withRouter } from 'react-router-dom'
-import store, { GET_SESSION, LOGIN } from '../redux/store'
+import '../Css/signIn.css'
+
+
 
 class SignIn extends Component {
   constructor(props) {
@@ -44,9 +46,10 @@ class SignIn extends Component {
 
   render() {
     return (
-      <div>
+      <div className="signIn">
 
-        <h1>Welcome to DropIn! Please Login</h1>
+        <h1>Welcome to DropIn!</h1>
+        <h3>Proximity Alerts for Future Listings</h3>
 
         <label htmlFor="phone"> Phone:
           <input type="text" placeholder="phone number" name='phone' onChange={this.handleChange} />

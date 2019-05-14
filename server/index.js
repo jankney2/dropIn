@@ -35,8 +35,8 @@ app.use(session({
 }))
 
 app.get('/api/userSession', (req, res)=>{
-  
-  delete req.session.user.pass_hash
+  console.log(req.session)
+  // delete req.session.user.pass_hash
 
   res.status(200).send(req.session)
 })
@@ -52,10 +52,12 @@ app.get('/api/userProperties/:id', listCtrl.getProperties)
 
 
 app.post(`/api/addList`, listCtrl.addList)
-app.post("/charge", async (req, res) => {
-  
 
+
+app.post("/charge", async (req, res) => {
+  app.use(require('body-parser').text())
   try {
+    console.log(req.body)
     let {status} = await stripe.charges.create({
       amount: 2000,
       currency: "usd",
@@ -63,11 +65,14 @@ app.post("/charge", async (req, res) => {
       source: req.body
     });
     console.log(status)
-    res.send(status);
+    res.json({status});
   } catch (err) {
+    console.log(err)
     res.status(500).end();
   }
 });
+
+
 
 app.post(`/api/addListIndividual`, listCtrl.addIndividual)
 app.post('/auth/login', authCtrl.login)

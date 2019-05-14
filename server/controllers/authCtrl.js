@@ -25,7 +25,6 @@ module.exports = {
       
       
       if (authenticated) {
-        console.log('if hit')
         
         delete session.user.pass_hash
 

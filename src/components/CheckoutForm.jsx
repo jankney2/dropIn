@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { CardElement, injectStripe } from 'react-stripe-elements';
 import axios from 'axios'
 
-
 class CheckoutForm extends Component {
   constructor(props) {
     super(props);
@@ -17,9 +16,9 @@ class CheckoutForm extends Component {
     // User clicked submit
 
     let { token } = await this.props.stripe.createToken({ name: "Name" });
-    let response = await axios.post("/charge", {
-      body: token.id
-    });
+    let response = await axios.post("/charge",{
+      source: token.id
+    } );
 
     if (response.ok) {
 

@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import axios from 'axios'
-import store, {  REG_LOGIN } from '../redux/store';
 
 
 export default class SignUp extends Component {
@@ -35,7 +34,7 @@ let response= await axios.post('/auth/register', {
   email: this.state.user_email, 
   lastName: this.state.last_name
 })
-console.log('register res', response)
+
 //     store.dispatch({
 //       type: REG_LOGIN, 
 //       payload: response.data.user
