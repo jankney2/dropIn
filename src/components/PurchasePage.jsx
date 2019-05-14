@@ -1,16 +1,15 @@
 import React from 'react'
-
-
+import '../Css/purchase.css'
 
 
 function PurchasePage() {
   return (
-    <div>
+    <div className="purchasePage">
 
-      <div>
+      <div className="purchaseHeader">
         <h1>it's Simple. Upload an Address, Get a Text When You're Close</h1>
 
-        <p>Drop in is a simple tool- it's designed to take in sales data and ping you when you get close to an address. have you ever wanted to drop in on a client or potential listing, but never can remember where they live? Upload their address, then dropin will send you a text when you're close! </p>
+        <p>Drop in is a simple tool- Upload a CSV of addresses, activate the tracker, and then get a text when you're within a mile of a property. </p>
       </div>
 
     
@@ -21,53 +20,53 @@ function PurchasePage() {
           
           
           
-          
+          <div className="cardHolderPurchase">
           
           <div className="card">
-
-
-            <h1>Free!</h1>
-            <ul>
-              <li>20 trackable addresses</li>
-              <li>15 uploads</li>
-              <li>It's Free!
-              </li>
-            </ul>
+          
+          
+          <h1>Free!</h1>
+          <ul>
+          <li>20 trackable addresses</li>
+          <li>20 uploads</li>
+          <li>1 alert every hour</li>
+          </ul>
           </div>
           
           
           <div className="card">
-
-
-            <h1>$9.99 Month</h1>
-            <ul>
-              <li>20 trackable addresses</li>
-              <li>unlimited uploads</li>
-              <li>billed Monthly</li>
-            </ul>
+          
+          
+          <h1>$9.99 Month</h1>
+          <ul>
+          <li>20 trackable addresses</li>
+          <li>unlimited uploads</li>
+          <li>billed Monthly</li>
+          </ul>
           </div>
-
+          
           <div className="card">
-            <h1>$14.99 Month</h1>
-            <ul>
-              <li>40 trackable addresses</li>
-              <li>unlimited uploads</li>
-              <li>billed Monthly</li>
-            </ul>
+          <h1>$14.99 Month</h1>
+          <ul>
+          <li>40 trackable addresses</li>
+          <li>unlimited uploads</li>
+          <li>billed Monthly</li>
+          </ul>
           </div>
-
+          
           <div className="card">
-            <h1>$24.99 Month</h1>
-            <ul>
-              <li>100 trackable addresses</li>
-              <li>Adjustable Tracking Radius</li>
-
-              <li>unlimited uploads</li>
-              <li>billed Monthly</li>
-            </ul>
-
-
-
+          <h1>$24.99 Month</h1>
+          <ul>
+          <li>100 trackable addresses</li>
+          <li>Adjustable Tracking Radius</li>
+          
+          <li>unlimited uploads</li>
+          <li>billed Monthly</li>
+          </ul>
+          
+          
+          
+          </div>
           </div>
 
           <div>

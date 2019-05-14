@@ -70,7 +70,7 @@ if(this.state.isLoggedIn){
 
     return (
       <div className="navBar">
-        <div>logo</div>
+
 
 
         <div>Dropin</div>
@@ -112,7 +112,7 @@ if(this.state.isLoggedIn){
 
     return (
       <div className="navBar">
-        <div>logo</div>
+
 
 
         <div>Dropin</div>
@@ -122,6 +122,9 @@ if(this.state.isLoggedIn){
       <div className="navLinkHolder">
 
 
+    <Link to='/userHome'>
+      <button onClick={this.loginHandler}>Login</button>
+    </Link>
 
       <input type="text" placeholder="phone number" name='phone' onChange={this.handleChange} />
 
@@ -133,9 +136,6 @@ if(this.state.isLoggedIn){
 
 
 
-    <Link to='/userHome'>
-      <button onClick={this.loginHandler}>Login</button>
-    </Link>
     </div>
 
 </div>

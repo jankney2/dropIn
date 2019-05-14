@@ -1,0 +1,28 @@
+.addListMaster {
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+}
+
+.addListMaster input {
+  display: block;
+  width: 66%;
+  margin: auto;
+  margin-top: 5%;
+  border-radius: 10%;
+  border:none;
+}
+
+.addListMaster input:focus {
+  border: 0;
+  outline: none;
+}
+
+.listCol {
+  margin: 5%;
+  width: 40%;
+  border: 1px solid #000;
+  border-radius: 5%;
+  padding: 5%;
+}
+

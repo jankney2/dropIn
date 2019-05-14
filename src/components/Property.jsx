@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-
+import axios from 'axios'
 import { withRouter } from 'react-router-dom'
 
 class Property extends Component {
@@ -8,7 +8,9 @@ class Property extends Component {
     super()
     this.state = {
       edit: false, 
-      newNoteInput:''
+      newNoteInput:'',
+       
+      
     }
   }
 
@@ -19,14 +21,13 @@ this.setState({
   [e.target.name]:e.target.value
 })
 
-
 }
 
 
 
 
   render() {
-
+//non edit state
     if (!this.state.edit) {
 
 
@@ -36,8 +37,8 @@ this.setState({
           margin: '10px',
 
         }}>
-
-          <p>Tracking: <input type="checkbox" checked/> </p>
+            <button onClick={()=>{
+            this.props.moveHandler(this.props.deleteId, this.props.tracker)}}>{this.props.moverButton}</button>
           <p>Seller:{this.props.seller}</p>
           <p>Price:{this.props.price}</p>
           <p>Address:{this.props.street} {this.props.city} {this.props.state} {this.props.zip}</p>

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import Papa from 'papaparse'
 import store from '../redux/store'
-
+import '../Css/addList.css'
 //known bug: keys in new list data have spaces in their names. 
 
 
@@ -117,9 +117,9 @@ componentDidMount() {
 
   render() {
 
-    let mapper= this.state.individualListRows.map((el)=> {
+    let mapper= this.state.individualListRows.map((el, i)=> {
       return(
-        <div>
+        <div key={i}>
         <input onChange={this.changeHandlerIndividual} type="text" name="streetInput" placeholder="Street"
           required
         />
@@ -172,12 +172,12 @@ componentDidMount() {
 
 
     return (
-      <div>
+      <div className='addListMaster'>
 
-        <div className="csvContainer">
+        <div className="csvContainer listCol">
 
           <h1>Create New Property List</h1>
-          <p>Please Upload a CSV file in the following format:</p>
+          
 
 
           <div className="fileInputCont">
@@ -197,7 +197,7 @@ componentDidMount() {
 
         </div>
 
-        <div>
+        <div className="listCol">
 
           <h1>Only have a few properties? upload them below</h1>
 

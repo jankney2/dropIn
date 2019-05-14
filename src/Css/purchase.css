@@ -1,0 +1,30 @@
+.cardHolderPurchase {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width:75%;
+  height: 25vh;
+  margin: auto;
+  text-align: center;  
+  border: 1px solid #000;
+  padding: 3%;
+}
+
+.purchaseHeader{
+  width: 66%;
+  margin-right: 33%;
+  border: 1px solid #000;
+  height: 50vh;
+  margin-top:5%;
+}
+
+.purchaseHeader * {
+  margin: 5%;
+}
+
+.card {
+  border: 1px solid #000;
+  
+}
+
+

@@ -1,0 +1,29 @@
+.userHome {
+  text-align: center;
+  height:100vh;
+  padding-top: 5vh;
+}
+
+.userHome ul {
+  /* width: 33%; */
+  display: flex;
+  justify-content: space-around;
+  background-color: green;
+}
+
+.userHome li {
+border: 1px solid #000;
+list-style-type: none;
+height: 33vh;
+width: 25%;
+transition: ease-in-out 1s;
+
+}
+
+.userHome li:hover {
+  background-color: yellow;
+}
+
+.userHome li * {
+  padding: 20px;
+}

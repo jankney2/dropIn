@@ -183,6 +183,32 @@ editNote: (req, res)=> {
 
 
 
+}, 
+
+changeTracking: async (req, res)=>{
+
+let {trackingStatus}= req.body
+let {id}= req.params
+let dbInstance= req.app.get('db')
+
+
+try {
+  
+  await dbInstance.update_property_tracking_status([trackingStatus, id])
+  
+  
+  
+  
+  let response= await dbInstance.get_properties_by_user_id(id)
+  
+  console.log('trackingres', response)
+  res.status(200).send(response)
+
+} catch (error) {
+  res.send(error)
+}
+
+
 }
 
 }

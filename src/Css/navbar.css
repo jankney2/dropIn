@@ -12,8 +12,9 @@ grain: #c09f80
 
 .navBar {
   display: flex;
-  justify-content: space-around;
-  font-size: 22px; 
+  justify-content: space-between;
+  align-items: center;
+  font-size: 3vh; 
   font-family: 'Comfortaa', cursive;
   font-weight: 600;
   text-transform: lowercase;
@@ -24,12 +25,21 @@ grain: #c09f80
   font-family: 'Comfortaa', cursive;
 }
 
-.navBar * {
-  padding: 2%;
-}
 
 .navLinkHolder {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.navLinkHolder input {
+  border: none;
+  border-radius: 3px;
+ 
+
+  box-shadow: rgb(255, 231, 231) 2px 2px 2px;
+}
+.navLinkHolder * {
+  padding: 5px;
 }
 

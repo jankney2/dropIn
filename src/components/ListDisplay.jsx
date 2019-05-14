@@ -15,6 +15,25 @@ export default class ListDisplay extends Component {
     }
   }
 
+
+  moveHandler= async (id, status) =>{
+  console.log(status)
+    try {
+
+     let response= await  axios.put(`/properties/${id}`, {trackingStatus:!status})
+      
+      this.setState({
+        userProperties:response.data
+      })
+  
+    } catch (error) {
+    console.log(error, "error with moveHandler")    
+    }
+  
+  
+  }
+
+
   deleter = (deleteId, userId) => {
     axios.delete(`/properties/deleteProperty/${deleteId}`).then((res) => {
 
@@ -82,8 +101,12 @@ export default class ListDisplay extends Component {
 
   render() {
 
-    let propertyMap = this.state.userProperties.map(el => {
+    let trackedPropertyMap = this.state.userProperties.map(el => {
+
+      if(el.is_tracked){
       return <Property
+        moveHandler={this.moveHandler}
+        moverButton='move to untracked'
         key={el.property_id}
         deleteId={el.property_id}
         price={el.price}
@@ -100,18 +123,48 @@ export default class ListDisplay extends Component {
         updating={this.updating}
         user={this.state.user}
       />
+      }
+
     })
 
+    let untrackedPropertyMap=this.state.userProperties.map(el => {
+
+      if(!el.is_tracked){
+      return <Property
+      moveHandler={this.moveHandler}
+        moverButton='move to tracked'
+        key={el.property_id}
+        deleteId={el.property_id}
+        price={el.price}
+        street={el.street}
+        seller={el.seller}
+        state={el.state}
+        zip={el.zip}
+
+        userNotes={el.user_notes}
+        tracker={el.is_tracked}
+        bedrooms={el.bedrooms}
+        bathrooms={el.bathrooms}
+        deleter={this.deleter}
+        updating={this.updating}
+        user={this.state.user}
+      />
+      }
+
+    })
+  
     return (
       <div>
 
         <div>
+        <h1>Tracked</h1>
+          {trackedPropertyMap}
 
-          <h1>Property Lists</h1>
+        </div>
 
-
-
-          {propertyMap}
+        <div>
+        <h1>Untracked</h1>
+          {untrackedPropertyMap}
 
         </div>
 
