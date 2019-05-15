@@ -43,7 +43,7 @@ app.put('/api/users/updateInfo/:userId', userCtrl.updateUserInfo)
 
 
 app.get('/api/userSession', (req, res)=>{
-  console.log(req.session)
+
   // delete req.session.user.pass_hash
 
   res.status(200).send(req.session)

@@ -200,7 +200,7 @@ try {
   
   
   let response= await dbInstance.get_properties_by_user_id(userId)
-  console.log('1111111', response)
+
 
   res.status(200).send(response)
 
