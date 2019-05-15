@@ -38,7 +38,7 @@ app.post(`/api/test/:userId`, distanceCalc.calcDist)
 
 
 app.put('/properties/:id', listCtrl.changeTracking)
-app.put('/api/users/updateInfo/:userId', userCtrl.updateUserInfo)
+app.post(`/api/refer/:userId`, userCtrl.addReferral)
 
 
 

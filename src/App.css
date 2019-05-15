@@ -77,8 +77,30 @@ table {
 }
 
 
+
+
+
+/*  colors:
+
+Rich Black: #003345
+blue sapphire: #0f6475
+metallic Seaweed: #1b8697
+cultured: #F4F4F4
+gainsburo: #DFDFDF
+
+*/
+
+/* Fonts*/
+
+
+
+@import url('https://fonts.googleapis.com/css?family=Comfortaa:400,500,600');
+
+@import url('https://fonts.googleapis.com/css?family=Rubik:400,500');
+
  body{
    box-sizing: border-box;
+   background-color: #f4f4f4;
  }
 
 a {

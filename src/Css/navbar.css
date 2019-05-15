@@ -1,45 +1,50 @@
-/* colors:
-
-grain: #d7cec7
-grain: #565656
-grain: #763237
-grain: #c09f80
-
-*/
 
 
-@import url('https://fonts.googleapis.com/css?family=Comfortaa:400,500,600');
 
 .navBar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 3vh; 
+  font-size: 36px; 
   font-family: 'Comfortaa', cursive;
-  font-weight: 600;
+  font-weight: 400;
   text-transform: lowercase;
+background-color: #1b8697;
+}
+
+
+
+.navBar>div {
+  
+  margin:0% 5%;
+  padding: 1%;
+  
 }
 
 .navBar button {
-  font-size:15px;
+  /* font-size:15px; */
   font-family: 'Comfortaa', cursive;
+  /* border-radius: 20%; */
+
+
 }
 
 
 .navLinkHolder {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
+
+  border: 1px solid #000;
 }
 
 .navLinkHolder input {
   border: none;
-  border-radius: 3px;
- 
-
-  box-shadow: rgb(255, 231, 231) 2px 2px 2px;
+  
+  
 }
 .navLinkHolder * {
-  padding: 5px;
+  /* padding: 10px; */
+
 }
 

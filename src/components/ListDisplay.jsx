@@ -68,7 +68,11 @@ export default class ListDisplay extends Component {
 
     axios.get('/api/userSession').then(res => {
 
-      console.log(res.data.user)
+      if(!res.data.user){
+        this.props.history.push('/')
+        alert("it looks like you aren't logged in. Please log in to continue.")
+      }
+
       store.dispatch(
         {
           type: 'REFRESH_SESSION',

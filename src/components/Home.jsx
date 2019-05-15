@@ -13,7 +13,7 @@ export default class Home extends Component {
 
 
           <div className="homeText">
-          <h1>DropIn!</h1>
+          <h1>DropIn</h1>
           <h3>Proximity Alerts for Future Listings</h3>
           
           

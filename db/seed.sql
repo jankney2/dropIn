@@ -63,3 +63,15 @@ create table property_details(
 -- 	List_id foreign key
 -- 	Property_id foreign key. 
 -- )
+
+
+create table userLeads(
+
+	lead_id serial primary key
+	lead_first_name varchar(50) not null, 
+	lead_last_name varchar(50) not null, 
+	lead_phone bigint not null, 
+	lead_email varchar(100) not null,
+	submitting_user_id int references users(user_id)
+
+)

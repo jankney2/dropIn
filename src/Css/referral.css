@@ -1,0 +1,51 @@
+
+.referralForm input {
+  display: block;
+  width: 66%;
+  /* margin: auto; */
+  /* margin-top: 5%; */
+  border-radius: 10%;
+  border:none;
+}
+
+.referralForm input:focus {
+  border: 0;
+  outline: none;
+}
+
+.referralForm {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #000;
+  width: 40%;
+  padding: 5%;
+}
+
+.referralForm * {
+  margin: 4vh;
+}
+
+.referral {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.referralInfo {
+width:35%;
+  border: 1px solid #000;
+}
+
+.referralInfo * {
+  margin: 3%;
+  
+}
+
+.thankYou {
+  height: 50vh;
+  width: 50vw;
+  margin-left:50%;
+  margin-top: 25%;
+
+
+}

@@ -21,7 +21,7 @@ export default class UserHome extends Component {
   //this is where you'll grab the lists for the user based off of the user's id (which you can pull off of the user object on state)
   componentDidMount() {
 
-
+    
 
 
 
@@ -36,7 +36,10 @@ export default class UserHome extends Component {
 
     axios.get('/api/userSession').then(res => {
 
-
+      if(!res.data.user){
+        this.props.history.push('/')
+        alert("it looks like you aren't logged in. Please log in to continue.")
+      }
 
       store.dispatch(
         {
@@ -119,7 +122,7 @@ export default class UserHome extends Component {
           </li>
 
           <li>
-            <Link to='/userEdit'>
+            <Link to='/referral'>
 
             <div>
               <i class="fas fa-user-friends fa-5x"></i>

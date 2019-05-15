@@ -11,11 +11,22 @@ text-align: left;
 }
 
 .homeText {
-text-align: center;
-  margin-left: 8%;
+/* text-align: center; */
+  margin-left: 10%;
   /* padding-top: 15%; */
   width: 33%;
   border: 2px red solid;
+  font-family: 'Rubik', 'sans-serif';
+  font-size: 24px;
+}
+
+.homeText h1 {
+  font-size: 36px;
+  font-weight: 500;
+}
+
+.homeText * {
+  padding: 5%;
 }
 
 

@@ -41,12 +41,14 @@ class NavBar extends Component {
 
       this.props.history.push('/userHome')
       this.setState({
-        isLoggedIn:true
+        isLoggedIn:reduxState.user.isLoggedIn
       })
     
     }
     catch{
-      throw new Error(403)
+
+      alert('Incorrect Phone Number/password combination. Please try again.')
+      // throw new Error(403)
     }
 
 
@@ -59,7 +61,7 @@ componentDidMount() {
     isLoggedIn:reduxState.isLoggedIn
   })
 
-  
+  console.log(this.props.history)
 }
 
 
@@ -122,9 +124,9 @@ if(this.state.isLoggedIn){
       <div className="navLinkHolder">
 
 
-    <Link to='/userHome'>
-      <button onClick={this.loginHandler}>Login</button>
-    </Link>
+<Link to='/userHome'>
+<button onClick={this.loginHandler}>Login</button>
+</Link>
 
       <input type="text" placeholder="phone number" name='phone' onChange={this.handleChange} />
 

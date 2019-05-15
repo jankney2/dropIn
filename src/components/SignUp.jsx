@@ -43,8 +43,18 @@ let response= await axios.post('/auth/register', {
     this.props.history.push('/userHome')
   }
 
-catch {
-  console.error();
+catch(error){
+
+  alert("Phone number already has an account attached to it.")
+
+  
+  let inputs= document.getElementsByTagName('input')
+
+  for(let i=0; i<inputs.length; i++) {
+    inputs[i].value=''
+  }
+
+  console.log(error);
   
 }  
 

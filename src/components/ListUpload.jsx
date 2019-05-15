@@ -22,6 +22,11 @@ export default class ListUpload extends Component {
 componentDidMount() {
   axios.get('/api/userSession').then(res=>{
  
+    if(!res.data.user){
+      this.props.history.push('/')
+      alert("it looks like you aren't logged in. Please log in to continue.")
+    }
+
     console.log(res.data.user)
      store.dispatch(
       {
@@ -94,6 +99,13 @@ componentDidMount() {
       state: this.state.stateInput, 
       price: this.state.priceInput
     }).then(()=>{
+
+      let inputs= document.getElementsByTagName('input')
+
+      for(let i=0; i<inputs.length; i++) {
+        inputs[i].value=''
+      }
+
       this.setState({
         bathroomsInput:'', 
         bedroomsInput:'', 
