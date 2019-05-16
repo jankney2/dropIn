@@ -7,7 +7,7 @@ import '../Css/Home.css'
 export default class Home extends Component {
   render() {
     return (
-      <div>
+      
 
         <div className="introText homePage">
 
@@ -28,7 +28,7 @@ export default class Home extends Component {
           
         </div>
 
-      </div>
+      
     )
   }
 }

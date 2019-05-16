@@ -3,31 +3,47 @@
 text-align: left;
 
   background-image: url('https://images.unsplash.com/photo-1529400971008-f566de0e6dfc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80');
-  /* width: 100%; */
-  height: 66vh;
-  padding-top: 15%;
+  width: 100%;
+  height: 100vh;
+
   background-repeat: no-repeat; 
   background-size: cover;
 }
 
 .homeText {
+
 /* text-align: center; */
   margin-left: 10%;
   /* padding-top: 15%; */
   width: 33%;
-  border: 2px red solid;
+  /* border: 2px red solid; */
   font-family: 'Rubik', 'sans-serif';
   font-size: 24px;
+  border-radius: 10%;
+  background-color: rgba(223,223,223, .25);
+  position: relative;
+  top:20%;
+  transition: ease-in-out 1s;
 }
 
-.homeText h1 {
-  font-size: 36px;
-  font-weight: 500;
+.homeText:hover{
+  background-color: rgba(223,223,223, .75);
 }
 
 .homeText * {
   padding: 5%;
 }
+
+.homeText h1 {
+  font-size: 36px;
+  font-weight: 500;
+  padding-top: 66px;
+}
+
+.homeText p {
+  padding-bottom: 100px;
+}
+
 
 
 

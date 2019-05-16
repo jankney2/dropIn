@@ -85,8 +85,8 @@ table {
 Rich Black: #003345
 blue sapphire: #0f6475
 metallic Seaweed: #1b8697
-cultured: #F4F4F4
-gainsburo: #DFDFDF
+cultured: #F4F4F4 (244,244,244)
+gainsburo: #DFDFDF, rgb(223,223,223);
 
 */
 
@@ -101,6 +101,7 @@ gainsburo: #DFDFDF
  body{
    box-sizing: border-box;
    background-color: #f4f4f4;
+   font-family: 'Rubik', sans-serif;
  }
 
 a {

@@ -93,8 +93,26 @@ export default class UserHome extends Component {
     return (
       <div className="userHome">
 
-        <h1>Welcome Back {this.state.user.first_name}</h1>
-        <h3>What can we do for you today?</h3>
+<div className='userHomeGreeter'>
+<h1>Welcome Back {this.state.user.first_name}</h1>
+<h3>What can we do for you today?</h3>
+        
+        
+<p>You currently have {this.state.userTotal} of your 50 properties in your database.</p>
+        
+        <button onClick={() => {
+          
+          setInterval(
+            () => {
+              
+              axios.post(`/api/test/${this.state.user.user_id}`, this.state.userLocation).then(res => console.log(res)).catch(err => alert(err))
+            }, 1000)
+            
+          }}>Click me to make location request</button>
+
+
+
+</div>
 
         <ul>
 
@@ -103,7 +121,7 @@ export default class UserHome extends Component {
             <div>
               <i className="fas fa-plus-circle fa-5x"></i>
             </div>
-            Add Properties
+            <p>Add Properties</p>
 
         </Link>
           </li>
@@ -115,7 +133,9 @@ export default class UserHome extends Component {
               <i class="fas fa-list-ul fa-5x"></i>
             </div>
 
-            Display My properties
+            <p>
+              Display My properties
+            </p>
 
 
         </Link>
@@ -130,7 +150,9 @@ export default class UserHome extends Component {
 
 
 
-            Refer A Friend
+            <p>
+              Refer A Friend
+            </p>
 
         </Link>
           </li>
@@ -139,17 +161,6 @@ export default class UserHome extends Component {
         </ul>
 
 
-        <button onClick={() => {
-          
-          setInterval(
-            () => {
-              
-              axios.post(`/api/test/${this.state.user.user_id}`, this.state.userLocation).then(res => console.log(res)).catch(err => alert(err))
-            }, 1000)
-            
-          }}>Click me to make location request</button>
-
-          <p>You currently have {this.state.userTotal} of your 50 properties in your database.</p>
 
 
 

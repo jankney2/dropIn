@@ -9,7 +9,8 @@
   font-family: 'Comfortaa', cursive;
   font-weight: 400;
   text-transform: lowercase;
-background-color: #1b8697;
+background-color: #003345;
+color: #f4f4f4;
 }
 
 
@@ -22,9 +23,9 @@ background-color: #1b8697;
 }
 
 .navBar button {
-  /* font-size:15px; */
+  font-size:15px;
   font-family: 'Comfortaa', cursive;
-  /* border-radius: 20%; */
+  border-radius: 20%;
 
 
 }
@@ -35,16 +36,16 @@ background-color: #1b8697;
   justify-content: space-between;
   align-items: center;
 
-  border: 1px solid #000;
+
 }
 
 .navLinkHolder input {
   border: none;
-  
+  margin: 0px 10px  
   
 }
 .navLinkHolder * {
-  /* padding: 10px; */
+  padding: 10px;
 
 }
 
