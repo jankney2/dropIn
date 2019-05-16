@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import store, {UPDATE_USER_INFO} from '../redux/store'
+import store, {UPDATE_USER_INFO, REG_LOGIN} from '../redux/store'
 import axios from 'axios';
 import '../Css/referral.css'
 
@@ -63,6 +63,12 @@ componentDidMount() {
       this.props.history.push('/')
       alert("it looks like you aren't logged in. Please log in to continue.")
     }
+
+    store.dispatch({
+      type: REG_LOGIN, 
+      payload: true
+    })
+
     this.setState({
       user:res.data.user
     })
@@ -89,12 +95,12 @@ if(!this.state.referralSubmit)
 return (
   <div className="referral">
 
-  <div className="referralInfo">
+  <div className="referralInfo refCol">
     <h1>Get a discount</h1>
     <p>Real estate is built on referrals. Refer us a friend and we'll discount your rate when your friend signs up for a paid account.</p>
   </div>
 
-    <div className="referralForm" >
+    <div className="referralForm refCol" >
     
     
     <div>

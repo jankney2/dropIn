@@ -1,3 +1,12 @@
+--user levels
+-- 1-free
+-- 2-low
+-- 3-mid
+-- 4-high
+-- 5-GOD (Admin)
+
+
+
 create table users (
 
 user_id serial primary key, 

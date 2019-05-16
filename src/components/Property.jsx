@@ -32,19 +32,21 @@ this.setState({
 
 
       return (
-        <div style={{
-          display: 'flex',
-          margin: '10px',
-
-        }}>
-            <button onClick={()=>{
-            this.props.moveHandler(this.props.deleteId, this.props.tracker)}}>{this.props.moverButton}</button>
+        <div className="property" >
+          <p>Address:{this.props.street} 
+          {this.props.city} {this.props.state} {this.props.zip}</p>
+          
           <p>Seller:{this.props.seller}</p>
           <p>Price:{this.props.price}</p>
-          <p>Address:{this.props.street} {this.props.city} {this.props.state} {this.props.zip}</p>
+          
           <p>Bedrooms:{this.props.bedrooms} Bathrooms: {this.props.bathrooms}</p>
-          <p>{this.props.userNotes}</p>
+          <p>Notes:{this.props.userNotes}</p>
 
+          
+          <button onClick={()=>{
+          this.props.moveHandler(this.props.deleteId, this.props.tracker)}}>{this.props.moverButton}</button>
+       
+          
           <button onClick={() => {
             this.setState({
               edit:true

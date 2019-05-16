@@ -1,20 +1,21 @@
 .cardHolderPurchase {
   display: flex;
+  /* flex-wrap: wrap; */
   justify-content: space-between;
   align-items: center;
-  width:75%;
-  height: 25vh;
+  width:90%;
+  /* height: 25vh; */
   margin: auto;
   text-align: center;  
-  border: 1px solid #000;
-  padding: 3%;
+  /* border: 1px solid #000; */
+  /* padding: 3%; */
 }
 
 .purchaseHeader{
   width: 66%;
   margin-right: 33%;
   border: 1px solid #000;
-  height: 50vh;
+  /* height: 50vh; */
   margin-top:5%;
 }
 
@@ -23,8 +24,15 @@
 }
 
 .card {
-  border: 1px solid #000;
-  
+  /* border: 1px solid #000; */
+  border-radius: 20px;
+  /* padding: 25px; */
+  margin: 45px;
+  transition: .25s ease-in-out;
+  font-size: 24px;
+}
+.card:hover{
+  background-color: #DFDFDF;
 }
 
 

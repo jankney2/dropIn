@@ -6,7 +6,7 @@ import {createStore} from 'redux'
 const initialState= {
   user: {},
   userPropLists: [], 
-
+  isLoggedIn: false
 }
 
 export const GET_SESSION ='GET_SESSION'
@@ -44,13 +44,13 @@ function reducer(state = initialState, action) {
     return {...state, user:payload}
 
     case LOGOUT:
-    return {...state, user:{}}
+    return {...state, user:{}, isLoggedIn:false}
 
     case LOGIN: 
     return {...state}
 
     case REG_LOGIN:
-    return {...state, user:payload}
+    return {...state, isLoggedIn:payload}
 
 
 

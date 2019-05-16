@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import axios from 'axios'
 import '../Css/register.css'
+import store, {REG_LOGIN} from '../redux/store'
 
 export default class SignUp extends Component {
   constructor(){
@@ -25,7 +26,7 @@ handleChange= (e)=> {
 
 registerHandler= async (e)=> {
 
-  // e.preventDefault()
+  e.preventDefault()
 try{
 let response= await axios.post('/auth/register', {
   phone: this.state.user_phone, 
@@ -34,12 +35,12 @@ let response= await axios.post('/auth/register', {
   email: this.state.user_email, 
   lastName: this.state.last_name
 })
+store.dispatch({
+  type: REG_LOGIN, 
+  payload: response.data.user.isLoggedIn
+})
 
-//     store.dispatch({
-//       type: REG_LOGIN, 
-//       payload: response.data.user
-//     })
-
+console.log(store.getState(), "redux State")
     this.props.history.push('/userHome')
   }
 
@@ -96,7 +97,7 @@ catch(error){
       
       </label>
       
-      <button onClick={this.registerHandler}>register!</button>
+      <button onClick={this.registerHandler}>Register!</button>
       </div>
 
 

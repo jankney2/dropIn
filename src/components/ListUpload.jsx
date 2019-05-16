@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import Papa from 'papaparse'
-import store from '../redux/store'
+import store, {REG_LOGIN}from '../redux/store'
 import '../Css/addList.css'
-//known bug: keys in new list data have spaces in their names. 
+//known bug: keys in new list data have spaces in their names. fix- use bracket notation to 
 
 
 
@@ -26,6 +26,11 @@ componentDidMount() {
       this.props.history.push('/')
       alert("it looks like you aren't logged in. Please log in to continue.")
     }
+
+    store.dispatch({
+      type: REG_LOGIN, 
+      payload: true
+    })
 
     console.log(res.data.user)
      store.dispatch(

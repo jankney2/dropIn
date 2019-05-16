@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import axios from "axios"
+import {connect} from 'react-redux'
 import { Link, withRouter } from 'react-router-dom'
-import store, { LOGOUT, GET_SESSION_REG } from '../redux/store'
+import store, { LOGOUT, GET_SESSION_REG, REG_LOGIN } from '../redux/store'
 import '../Css/navbar.css'
 
 
@@ -11,7 +12,8 @@ class NavBar extends Component {
     super()
     this.state = {
       phone: '',
-      pass: ''
+      pass: '',
+      isLoggedIn: false
     }
   }
 
@@ -27,22 +29,29 @@ class NavBar extends Component {
     e.preventDefault()
     
     try {
-      let reduxState=store.getState()
+
       let response = await axios.post('/auth/login', {
         phone: this.state.phone,
         pass: this.state.pass
       })
 
       store.dispatch({
-        type: GET_SESSION_REG, 
-        payload: response.data.user
+        type:REG_LOGIN, 
+        payload: true
       })
 
+let inputs=document.getElementsByTagName('input')
+
+for(let i=0; i<inputs.length; i++) {
+  inputs[i].value=''
+}
+
+this.setState({
+  phone:'', 
+  pass:''
+})
 
       this.props.history.push('/userHome')
-      this.setState({
-        isLoggedIn:reduxState.user.isLoggedIn
-      })
     
     }
     catch{
@@ -56,12 +65,15 @@ class NavBar extends Component {
 
 
 componentDidMount() {
-  let reduxState=store.getState()
-  this.setState({
-    isLoggedIn:reduxState.isLoggedIn
-  })
 
-  console.log(this.props.history)
+store.subscribe(()=>{
+  const reduxState= store.getState()
+
+  this.setState({
+    isLoggedIn: reduxState.isLoggedIn
+  })
+})
+
 }
 
 

@@ -1,18 +1,29 @@
 .signUp {
 border: 1px black solid;
 width: 40%;
-margin: auto;
-height: 75vh;
+/* margin-right: 25%; */
+/* height: 75vh; */
+margin-top: 5%;
+padding: 50px;
 
+}
+
+.signUp button {
+margin-top: 10%;
+margin-left: 190px;
+}
+
+.signUp h1 {
+  font-size: 36px;
 }
 
 .signUp input {
   display: block;
   width: 66%;
   margin: auto;
-  margin-top: 5%;
-  border-radius: 10%;
+  margin-top: 15%;
   border:none;
+  border: 1px solid #000;
 }
 
 .signUp input:focus {

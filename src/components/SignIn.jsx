@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import { Link, withRouter } from 'react-router-dom'
+import store, {REG_LOGIN} from '../redux/store'
 // import '../Css/signIn.css'
+
 
 
 
@@ -32,6 +34,11 @@ class SignIn extends Component {
         pass: this.state.pass
       })
       console.log("login Res", response)
+
+      store.dispatch({
+        type:REG_LOGIN, 
+        payload: true
+      })
 
       this.props.history.push('/userHome')
     }

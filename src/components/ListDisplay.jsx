@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import store from '../redux/store'
+import store, { REG_LOGIN } from '../redux/store'
 import axios from 'axios'
 import Property from './Property';
-
+import '../Css/propList.css'
 
 export default class ListDisplay extends Component {
   constructor() {
@@ -16,23 +16,24 @@ export default class ListDisplay extends Component {
   }
 
 
-  moveHandler= async (propId, status) =>{
+  moveHandler = async (propId, status) => {
 
     try {
 
-     let response= await  axios.put(`/properties/${propId}`, {trackingStatus:!status, 
-    userId:this.state.user.user_id
-    })
+      let response = await axios.put(`/properties/${propId}`, {
+        trackingStatus: !status,
+        userId: this.state.user.user_id
+      })
 
       this.setState({
-        userProperties:response.data
+        userProperties: response.data
       })
-  
+
     } catch (error) {
-    console.log(error, "error with moveHandler")    
+      console.log(error, "error with moveHandler")
     }
-  
-  
+
+
   }
 
 
@@ -49,8 +50,8 @@ export default class ListDisplay extends Component {
 
   updating = (input, id) => {
     axios.put(`/properties/addNote/${id}`, {
-        noteText: input
-      }
+      noteText: input
+    }
     ).then((res) => {
 
       this.setState({
@@ -68,7 +69,11 @@ export default class ListDisplay extends Component {
 
     axios.get('/api/userSession').then(res => {
 
-      if(!res.data.user){
+      if (!res.data.user) {
+        store.dispatch({
+          type: REG_LOGIN,
+          payload: false
+        })
         this.props.history.push('/')
         alert("it looks like you aren't logged in. Please log in to continue.")
       }
@@ -79,19 +84,22 @@ export default class ListDisplay extends Component {
           payload: res.data.user
         }
       )
-
+      store.dispatch({
+        type: REG_LOGIN,
+        payload: true
+      })
       let reduxState = store.getState()
 
       this.setState({
         user: reduxState.user
       })
-      
-          axios.get(`/api/userProperties/${this.state.user.user_id}`).then(res => {
-      
-            this.setState({
-              userProperties: res.data
-            })
-          }).catch(err => console.log(err, 'frontend get failed'))
+
+      axios.get(`/api/userProperties/${this.state.user.user_id}`).then(res => {
+
+        this.setState({
+          userProperties: res.data
+        })
+      }).catch(err => console.log(err, 'frontend get failed'))
 
     }).catch(err => console.log('error on session request', err))
 
@@ -104,68 +112,76 @@ export default class ListDisplay extends Component {
 
     let trackedPropertyMap = this.state.userProperties.map(el => {
       // console.log(this.state)
-      if(el.is_tracked){
-      return <Property
-        moveHandler={this.moveHandler}
-        moverButton='move to untracked'
-        key={el.property_id}
-        deleteId={el.property_id}
-        price={el.price}
-        street={el.street}
-        seller={el.seller}
-        state={el.state}
-        zip={el.zip}
+      if (el.is_tracked) {
+        return <Property
+          className="property"
+          moveHandler={this.moveHandler}
+          moverButton='move to untracked'
+          key={el.property_id}
+          deleteId={el.property_id}
+          price={el.price}
+          street={el.street}
+          seller={el.seller}
+          state={el.state}
+          zip={el.zip}
 
-        userNotes={el.user_notes}
-        tracker={el.is_tracked}
-        bedrooms={el.bedrooms}
-        bathrooms={el.bathrooms}
-        deleter={this.deleter}
-        updating={this.updating}
-        user={this.state.user}
-      />
+          userNotes={el.user_notes}
+          tracker={el.is_tracked}
+          bedrooms={el.bedrooms}
+          bathrooms={el.bathrooms}
+          deleter={this.deleter}
+          updating={this.updating}
+          user={this.state.user}
+        />
       }
 
     })
 
-    let untrackedPropertyMap=this.state.userProperties.map(el => {
+    let untrackedPropertyMap = this.state.userProperties.map(el => {
 
-      if(!el.is_tracked){
-      return <Property
-      moveHandler={this.moveHandler}
-        moverButton='move to tracked'
-        key={el.property_id}
-        deleteId={el.property_id}
-        price={el.price}
-        street={el.street}
-        seller={el.seller}
-        state={el.state}
-        zip={el.zip}
+      if (!el.is_tracked) {
+        return <Property
+          className="property"
+          moveHandler={this.moveHandler}
+          moverButton='move to tracked'
+          key={el.property_id}
+          deleteId={el.property_id}
+          price={el.price}
+          street={el.street}
+          seller={el.seller}
+          state={el.state}
+          zip={el.zip}
 
-        userNotes={el.user_notes}
-        tracker={el.is_tracked}
-        bedrooms={el.bedrooms}
-        bathrooms={el.bathrooms}
-        deleter={this.deleter}
-        updating={this.updating}
-        user={this.state.user}
-      />
+          userNotes={el.user_notes}
+          tracker={el.is_tracked}
+          bedrooms={el.bedrooms}
+          bathrooms={el.bathrooms}
+          deleter={this.deleter}
+          updating={this.updating}
+          user={this.state.user}
+        />
       }
 
     })
-  
+
     return (
-      <div>
+      <div className="listDisplay">
 
         <div>
-        <h1>Tracked</h1>
-          {trackedPropertyMap}
+          <h1>Tracked Properties</h1>
+
+
+          <div className="propertyHolder">
+            {trackedPropertyMap}
+          </div>
 
         </div>
 
         <div>
-        <h1>Untracked</h1>
-          {untrackedPropertyMap}
+          <h1>Untracked Properties</h1>
+          
+          <div className='propertyHolder'>
+            {untrackedPropertyMap}</div>
 
         </div>
 

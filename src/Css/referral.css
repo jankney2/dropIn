@@ -1,16 +1,20 @@
 
 .referralForm input {
   display: block;
-  width: 66%;
+  width: 33%;
   /* margin: auto; */
-  /* margin-top: 5%; */
-  border-radius: 10%;
+  margin-left: 30%;
+  /* border-radius: 10%; */
   border:none;
+  border-bottom: 1px #0f6475 solid;
+  transition: all .5s ease-in-out;
 }
 
 .referralForm input:focus {
-  border: 0;
+  border-bottom: 1px #0f6475 solid;
   outline: none;
+  width: 50%;
+
 }
 
 .referralForm {
@@ -18,17 +22,18 @@
   flex-direction: column;
   border: 1px solid #000;
   width: 40%;
-  padding: 5%;
+  /* padding: 5%; */
 }
 
 .referralForm * {
-  margin: 4vh;
+  margin: 10px;
 }
 
 .referral {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
+  align-items: center;
 }
 
 .referralInfo {
@@ -49,3 +54,16 @@ width:35%;
 
 
 }
+.refCol {
+  margin-top: 10%;
+}
+
+.referralForm button {
+  width: 50%;
+  margin: auto;
+  padding: 15px;
+  border-radius: 30px;
+  font-size: 20px;
+
+}
+
