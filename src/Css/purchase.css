@@ -51,14 +51,14 @@
 .card {
   /* border: 1px solid #000; */
   border-radius: 20px;
-  /* padding: 30px; */
-  margin: 15px;
+  padding: 30px 10px;
+  /* margin: 15px; */
   transition: .25s ease-in-out;
   font-size: 20px;
   width: 25%;
 }
 .card:hover{
-  background-color: rgba(223,51,69, .1);
+  background-color: #0f6475;
 }
 
 .cardRow {

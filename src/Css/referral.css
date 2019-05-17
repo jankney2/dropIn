@@ -6,21 +6,22 @@
   margin-left: 30%;
   /* border-radius: 10%; */
   border:none;
-  border-bottom: 1px #0f6475 solid;
-  transition: all .5s ease-in-out;
+  border-bottom: 1px solid #dfdfdf;
+  transition: ease-in-out all 2s;
+  border-width: #f4f4f4;
 }
 
 .referralForm input:focus {
-  border-bottom: 1px #0f6475 solid;
+  /* border-bottom: 1px #0f6475 solid; */
   outline: none;
-  width: 50%;
+
 
 }
 
 .referralForm {
   display: flex;
   flex-direction: column;
-  border: 1px solid #000;
+  /* border: 1px solid #000; */
   width: 40%;
   /* padding: 5%; */
 }
@@ -38,12 +39,19 @@
 
 .referralInfo {
 width:35%;
-  border: 1px solid #000;
 }
 
 .referralInfo * {
-  margin: 3%;
-  
+  margin: 5%;
+}
+
+.referralInfo h1 {
+  /* margin: 3%; */
+  font-size: 36px;  
+}
+
+.referralInfo p {
+  font-size: 24px;
 }
 
 .thankYou {
@@ -55,8 +63,13 @@ width:35%;
 
 }
 .refCol {
-  margin-top: 10%;
+  margin-top: 5%;
+  background-color: #f4f4f4;
+  border-radius: 30px;
+  padding: 30px;
 }
+
+
 
 .referralForm button {
   width: 50%;

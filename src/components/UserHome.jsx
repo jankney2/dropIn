@@ -159,7 +159,6 @@ export default class UserHome extends Component {
           }}>Start Tracking</button>
 
 
-<h3>What can we do for you today?</h3>
         
         
 <p>You currently have {this.state.userTotal} of 20 properties in your database.</p>

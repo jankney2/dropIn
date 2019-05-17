@@ -1,6 +1,8 @@
 .signUp {
-border: 1px black solid;
+/* border: 1px black solid; */
+background-color: #f4f4f4;
 width: 40%;
+border-radius: 30px;
 /* margin-right: 25%; */
 /* height: 75vh; */
 margin-top: 5%;
@@ -20,14 +22,16 @@ margin-left: 195px;
 .signUp input {
   display: block;
   width: 66%;
+  padding: 10px;
   margin: auto;
   margin-top: 15%;
   border:none;
-  border: 1px solid #000;
+  border-bottom: 1px solid #dfdfdf;
+  transition: ease-in-out all 2s;
 }
 
 .signUp input:focus {
-  border: 0;
+/* border: 0; */
   outline: none;
 }
 
