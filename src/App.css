@@ -82,7 +82,7 @@ table {
 
 /*  colors:
 
-Rich Black: #003345
+Rich Black: #003345 rgb(0,51,69)
 blue sapphire: #0f6475
 metallic Seaweed: #1b8697
 cultured: #F4F4F4 (244,244,244)
@@ -100,12 +100,13 @@ gainsburo: #DFDFDF, rgb(223,223,223);
 
  body{
    box-sizing: border-box;
-   background-color: #f4f4f4;
+   background-color: #dfdfdf;
    font-family: 'Rubik', sans-serif;
  }
 
 a {
-  text-decoration: none;
+  text-decoration: underline;
+  color: inherit;
 
 }
  a:visited {

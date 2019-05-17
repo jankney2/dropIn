@@ -1,3 +1,4 @@
+
 .homePage {
 
 text-align: left;
@@ -8,6 +9,7 @@ text-align: left;
 
   background-repeat: no-repeat; 
   background-size: cover;
+
 }
 
 .homeText {
@@ -41,7 +43,7 @@ text-align: left;
 }
 
 .homeText p {
-  padding-bottom: 100px;
+  padding-bottom: 35px;
 }
 
 

@@ -1,8 +1,8 @@
 --user levels
--- 1-free
--- 2-low
--- 3-mid
--- 4-high
+-- 1-free- 20 trackable, 20 uploads, 1 alert per hour
+-- 2-low- 20 trackable, 100 uploads, 1 alert per hour
+-- 3-mid- 50 trackable, 300 uploads, 1 alert per 30 min
+-- 4-high- 100 trackable, 1000 uploads, custom alerts, custom search radius. 
 -- 5-GOD (Admin)
 
 

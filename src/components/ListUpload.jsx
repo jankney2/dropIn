@@ -196,6 +196,7 @@ componentDidMount() {
           <h1>Create New Property List</h1>
           
 
+          <p>Upload your csv from Landvoice, then click submit!</p>
 
           <div className="fileInputCont">
             <input type="text" placeholder="List Name" onChange={(e) => {
@@ -208,7 +209,7 @@ componentDidMount() {
 
             <button onClick={(e) => {
               this.submitHandler(e)
-            }}>click to Submit</button>
+            }}>Submit</button>
           </div>
 
 
@@ -216,7 +217,7 @@ componentDidMount() {
 
         <div className="listCol">
 
-          <h1>Only have a few properties? upload them below</h1>
+          <h1>Only have one or two properties?</h1>
 
           <input onChange={this.changeHandlerIndividual} type="text" name="individualListName" placeholder="List Name"
             required
@@ -224,7 +225,7 @@ componentDidMount() {
          {mapper}
          
 
-          <button onClick={this.submitHandlerIndividual}>Add List</button>
+          <button onClick={this.submitHandlerIndividual}>Add Property</button>
 
         </div>
 

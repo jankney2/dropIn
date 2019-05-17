@@ -86,9 +86,11 @@ if(this.state.isLoggedIn){
       <div className="navBar">
 
 
-
-        <div>Dropin</div>
-       
+<div id="logo">
+<Link to='/'>
+Dropin
+</Link>
+</div>
        
        
         <div className="navLinkHolder">
@@ -128,8 +130,11 @@ if(this.state.isLoggedIn){
       <div className="navBar">
 
 
-
-        <div>Dropin</div>
+<div id="logo">
+<Link to='/'>
+Dropin
+</Link>
+</div>
        
 
 

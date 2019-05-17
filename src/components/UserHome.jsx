@@ -93,13 +93,61 @@ export default class UserHome extends Component {
     return (
       <div className="userHome">
 
+
+<ul>
+
+<li>
+  <Link to='/addList'>
+  <div>
+    <i className="fas fa-plus-circle fa-5x"></i>
+  </div>
+  <p>Add Properties</p>
+
+</Link>
+</li>
+
+<li>
+  <Link to='/listDisplay'>
+
+  <div>
+    <i class="fas fa-list-ul fa-5x"></i>
+  </div>
+
+  <p>
+    Display My properties
+  </p>
+
+
+</Link>
+</li>
+
+<li>
+  <Link to='/referral'>
+
+  <div>
+    <i class="fas fa-user-friends fa-5x"></i>
+  </div>
+
+
+
+  <p>
+    Refer A Friend
+  </p>
+
+</Link>
+</li>
+
+
+</ul>
+
+
+
+
+
+
+
 <div className='userHomeGreeter'>
-<h1>Welcome Back {this.state.user.first_name}</h1>
-<h3>What can we do for you today?</h3>
-        
-        
-<p>You currently have {this.state.userTotal} of your 50 properties in your database.</p>
-        
+<h1>Welcome back {this.state.user.first_name}</h1>
         <button onClick={() => {
           
           setInterval(
@@ -108,57 +156,21 @@ export default class UserHome extends Component {
               axios.post(`/api/test/${this.state.user.user_id}`, this.state.userLocation).then(res => console.log(res)).catch(err => alert(err))
             }, 1000)
             
-          }}>Click me to make location request</button>
+          }}>Start Tracking</button>
 
 
+<h3>What can we do for you today?</h3>
+        
+        
+<p>You currently have {this.state.userTotal} of 20 properties in your database.</p>
 
+
+        
 </div>
 
-        <ul>
-
-          <li>
-            <Link to='/addList'>
-            <div>
-              <i className="fas fa-plus-circle fa-5x"></i>
-            </div>
-            <p>Add Properties</p>
-
-        </Link>
-          </li>
-
-          <li>
-            <Link to='/listDisplay'>
-
-            <div>
-              <i class="fas fa-list-ul fa-5x"></i>
-            </div>
-
-            <p>
-              Display My properties
-            </p>
 
 
-        </Link>
-          </li>
-
-          <li>
-            <Link to='/referral'>
-
-            <div>
-              <i class="fas fa-user-friends fa-5x"></i>
-            </div>
-
-
-
-            <p>
-              Refer A Friend
-            </p>
-
-        </Link>
-          </li>
-
-
-        </ul>
+       
 
 
 

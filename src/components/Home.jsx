@@ -22,6 +22,13 @@ export default class Home extends Component {
           Register Here
           
           </Link></p>
+
+          <p>
+            What is DropIn? <Link to='/info'>
+              Find Out
+            </Link>
+
+          </p>
           
           </div>
 

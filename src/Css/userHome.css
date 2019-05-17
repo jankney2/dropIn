@@ -1,20 +1,20 @@
 .userHome {
   text-align: center;
   height:100vh;
-  padding-top: 5vh;
+  padding-top: 10vh;
   background-color: #dfdfdf;
 }
 
 .userHome ul {
-  width: 70%;
+  width: 75%;
   margin: auto;
   display: flex;
   flex-wrap: wrap;
-  padding: 35px;
+  /* padding: 35px; */
   justify-content: space-around;
   /* background-color: #f4f4f4; */
   /* border: 1px solid #000; */
-  border-left: #000 1px solid;
+  border-left: #003345 5px solid;
 }
 
 .userHome li {
@@ -25,28 +25,35 @@ min-width: 20%;
 padding: 30px;
 transition: ease-in-out .5s;
 text-align: center;
+font-size: 24px;
 
 }
 
 .userHome li p {
   text-align: center;
+  margin-top: 15%;
+}
+
+.userHome li a {
+  text-decoration: none;
 }
 
 .userHome li:hover {
   
-  background-color: royalblue;
+  /* background-color: royalblue; */
   border-radius: 75%;
   
   
 }
 
 .userHome li * {
-  border: 1px solid #000;
+  /* border: 1px solid #000; */
   
 }
 
 .userHomeGreeter {
   text-align: left;
-  margin:3%;
-  font-size: 36px;
+  /* margin:3%; */
+  font-size: 24px;
 }
+

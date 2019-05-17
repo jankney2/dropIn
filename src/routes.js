@@ -22,7 +22,8 @@ export default (
     <Route exact path='/referral' component={Referral} />
     <Route exact path='/listDisplay' component={ListDisplay} />
     <Route exact path='/addList' component={ListUpload} />
-    <Route exact path='/purchase' component={PurchasePage} />
+    <Route exact path='/info' component={PurchasePage} />
+
 
 
 

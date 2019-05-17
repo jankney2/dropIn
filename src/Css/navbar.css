@@ -13,7 +13,9 @@ background-color: #003345;
 color: #f4f4f4;
 }
 
-
+#logo a {
+text-decoration: none;  
+}
 
 .navBar>div {
   
@@ -25,7 +27,7 @@ color: #f4f4f4;
 .navBar button {
   font-size:15px;
   font-family: 'Comfortaa', cursive;
-  border-radius: 20%;
+  /* border-radius: 20%; */
 
 
 }
