@@ -124,7 +124,7 @@ export default class ListDisplay extends Component {
           seller={el.seller}
           state={el.state}
           zip={el.zip}
-
+          city={el.city}
           userNotes={el.user_notes}
           tracker={el.is_tracked}
           bedrooms={el.bedrooms}
@@ -151,7 +151,7 @@ export default class ListDisplay extends Component {
           seller={el.seller}
           state={el.state}
           zip={el.zip}
-
+          city={el.city}
           userNotes={el.user_notes}
           tracker={el.is_tracked}
           bedrooms={el.bedrooms}
