@@ -67,3 +67,19 @@
   align-items: center;
   padding: 30px;
 }
+
+@media(max-width:450px) {
+  .purchaseHeader h1 {
+    font-size: 24px;
+    width: 75%;
+  }
+
+  .cardRow {
+    display: block;
+    padding: 0px;
+  }
+  .card {
+    margin: auto;
+    width: 75%;
+  }
+}

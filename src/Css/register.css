@@ -47,3 +47,34 @@ margin-left: 195px;
   
  
 }
+
+
+@media(max-width:450px) {
+  .signUp h1 {
+    font-size: 16px;
+  }
+  .signUp input {
+    font-size: 10px;
+  }
+
+  .signUp {
+    margin-top: 0%;
+    position: absolute;
+    top: 20%;
+    border: #dfdfdf 2px solid;
+
+  }
+
+  .signUp button {
+    margin: 25% 25%;
+    font-size: 12px;
+    padding: 5px;
+  }
+
+  .signUpCont {
+    height: 95vh;
+    background-color: #f4f4f4;
+
+  }
+
+}
