@@ -28,7 +28,7 @@ module.exports = {
     properties.forEach(async (el) => {
       //geocode the address
       
-      console.log('for each running')
+      // console.log('for each running')
       //geocoding
       
       let geoCodeRes = await axios.post(`https://maps.googleapis.com/maps/api/geocode/json?address=${el["Property Street"]}+${el["Property City"].replace(',', '')}+${el['Property State']}+${el['Property Zip'].toString()}&key=${REACT_APP_GOOGLE_MAPS_KEY}`)
