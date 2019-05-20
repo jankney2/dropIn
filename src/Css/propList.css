@@ -24,6 +24,7 @@
   padding: 40px;
   max-width: 350px;
   min-height: 80vh;
+  max-height: 100vh;
 }
 
 .listDisplay h1 {

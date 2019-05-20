@@ -1,3 +1,9 @@
+@keyframes fadeIn {
+  from {opacity: 0}
+  to {opacity: 1;}
+}
+
+
 .signUp {
 /* border: 1px black solid; */
 background-color: #f4f4f4;
@@ -6,8 +12,9 @@ border-radius: 30px;
 /* margin-right: 25%; */
 /* height: 75vh; */
 margin-top: 5%;
+margin-bottom: 5%;
 padding: 50px;
-
+animation: fadein 1s linear;
 }
 
 .signUp button {

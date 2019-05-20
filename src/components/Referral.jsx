@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import store, {UPDATE_USER_INFO, REG_LOGIN} from '../redux/store'
+import store, {REG_LOGIN} from '../redux/store'
 import axios from 'axios';
 import '../Css/referral.css'
 

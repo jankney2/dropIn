@@ -32,7 +32,6 @@ componentDidMount() {
       payload: true
     })
 
-    console.log(res.data.user)
      store.dispatch(
       {
         type: 'REFRESH_SESSION', 

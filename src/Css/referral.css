@@ -1,4 +1,9 @@
 
+@keyframes fadeIn {
+  from {opacity: 0}
+  to {opacity: 1;}
+}
+
 .referralForm input {
   display: block;
   width: 33%;
@@ -24,6 +29,7 @@
   /* border: 1px solid #000; */
   width: 40%;
   /* padding: 5%; */
+
 }
 
 .referralForm * {
@@ -35,6 +41,7 @@
   flex-wrap: wrap;
   justify-content: space-evenly;
   align-items: center;
+  animation: fadeIn 1s linear ;
 }
 
 .referralInfo {
@@ -64,6 +71,7 @@ width:35%;
 }
 .refCol {
   margin-top: 5%;
+  margin-bottom: 5%;
   background-color: #f4f4f4;
   border-radius: 30px;
   padding: 30px;

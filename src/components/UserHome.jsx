@@ -110,7 +110,7 @@ export default class UserHome extends Component {
   <Link to='/listDisplay'>
 
   <div>
-    <i class="fas fa-list-ul fa-5x"></i>
+    <i className="fas fa-list-ul fa-5x"></i>
   </div>
 
   <p>
@@ -125,7 +125,7 @@ export default class UserHome extends Component {
   <Link to='/referral'>
 
   <div>
-    <i class="fas fa-user-friends fa-5x"></i>
+    <i className="fas fa-user-friends fa-5x"></i>
   </div>
 
 

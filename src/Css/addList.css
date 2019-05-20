@@ -1,8 +1,15 @@
+
+@keyframes fadeIn {
+  from {opacity: 0}
+  to {opacity: 1;}
+}
+
 .addListMaster {
   display: flex;
   justify-content: space-around;
   text-align: center;
   /* flex-wrap: wrap; */
+  animation: 1s linear fadeIn;
 }
 
 .addListMaster input {

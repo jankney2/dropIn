@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import axios from "axios"
-import {connect} from 'react-redux'
 import { Link, withRouter } from 'react-router-dom'
-import store, { LOGOUT, GET_SESSION_REG, REG_LOGIN } from '../redux/store'
+import store, { LOGOUT, REG_LOGIN } from '../redux/store'
 import '../Css/navbar.css'
 
 
@@ -30,7 +29,7 @@ class NavBar extends Component {
     
     try {
 
-      let response = await axios.post('/auth/login', {
+       await axios.post('/auth/login', {
         phone: this.state.phone,
         pass: this.state.pass
       })

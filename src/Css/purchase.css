@@ -23,6 +23,11 @@
   color: #dfdfdf
 }
 
+.cardHolderPurchase>h1 {
+  font-size: 36px;
+  padding-top: 45px;
+}
+
 .purchaseHeader{
   /* width: 66%; */
   /* margin-right: 33%; */
@@ -82,4 +87,10 @@
     margin: auto;
     width: 75%;
   }
+
+  .cardHolderPurchase>h1 {
+    font-size: 36px;
+    padding-top: 45px;
+  }
+
 }
