@@ -41,3 +41,34 @@ margin-bottom: 15%;
   margin-top: 50%;
 }
 
+
+@media (max-width: 450px) {
+  .addListMaster {
+    display: block;
+  }
+
+  .listCol {
+    width: 66%;
+    margin: auto;
+    margin-bottom: 10%;
+    margin-top: 10%;
+  }
+
+  .listCol h1 {
+    font-size: 20px;
+  }
+
+  
+  .listCol button {
+    font-size: 14px;
+    padding: 10px;
+    margin-top: 15%;
+  }
+
+  .fileInputCont {
+    margin-bottom:0;
+  }
+
+  
+
+}

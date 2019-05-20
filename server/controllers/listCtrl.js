@@ -32,7 +32,7 @@ module.exports = {
 
       let longitude = geoCodeRes.data.results[0].geometry.location.lng.toString()
 
-
+      // let userProps= await dbInstance.get_properties_by_user_id([session.user.user_id])
 
 
 

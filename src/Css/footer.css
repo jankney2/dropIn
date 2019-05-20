@@ -1,6 +1,6 @@
 .footer {
 text-align: center;
-/* position: absolute; */
+/* position: fixed; */
 /* bottom: 0px; */
 padding: 1.5%;
 color: #f4f4f4;
@@ -9,4 +9,14 @@ background-color: #003345;
 
 .footer * {
   margin: 1%;
+}
+
+
+@media (max-width: 450px) {
+  .footer {
+    margin-top: 10%;
+    position: fixed;
+    bottom: 0px;
+    width: 100vw;
+  }
 }

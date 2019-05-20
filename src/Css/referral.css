@@ -80,3 +80,30 @@ width:35%;
 
 }
 
+
+
+@media (max-width: 450px) {
+  
+  .refCol {
+    width: 75%;
+
+  }
+  
+  .refCol h1 {
+    font-size: 24px;
+
+  }
+
+  .refCol button {
+    padding: 10px; 
+    font-size: 14px;
+  }
+
+  .refCol p {
+    font-size: 16px;
+  }
+
+  .refCol input {
+    width: 40%;
+  }
+}

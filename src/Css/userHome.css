@@ -75,3 +75,15 @@ font-size: 24px;
 i {
   /* color: #003345; */
 }
+
+
+@media (max-width: 450px) {
+
+  .userHome ul {
+    border: none;
+  }
+
+
+
+
+}

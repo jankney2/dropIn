@@ -154,7 +154,7 @@ export default class UserHome extends Component {
             () => {
               
               axios.post(`/api/test/${this.state.user.user_id}`, this.state.userLocation).then(res => console.log(res)).catch(err => alert(err))
-            }, 1000)
+            }, 10000)
             
           }}>Start Tracking</button>
 

@@ -11,7 +11,7 @@ module.exports = {
 
 
 console.log("IC:",iteration, "text status", textSent)
-if(iteration===30){
+if(iteration===360){
   textSent=false
   iteration=0
 }
@@ -24,12 +24,15 @@ if(iteration===30){
 
     let dbResponse = await dbInstance.get_properties_by_user_id(userId)
 
-console.log(dbResponse)
+
     //for each item in the dbResponse array, run the distance matrix. if distanceVal is less than 1600, send text
 if(!textSent) {
 
 //stack filter and foreach to determine 
-    dbResponse.forEach(async (el) => {
+//only search 20 properties at a time-     
+
+
+dbResponse.forEach(async (el) => {
 
       //compare it to static address
 
@@ -62,8 +65,8 @@ if(!textSent) {
         }
       }
 
-      catch {
-        throw new Error(403)
+      catch(err) {
+        console.log(err)
       }
 
 
