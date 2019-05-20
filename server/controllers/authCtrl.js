@@ -66,7 +66,7 @@ module.exports = {
     let hashedPass = bcrypt.hashSync(req.body.pass, salt)
 
 
-    const user = await dbInstance.create_user([firstName, lastName, email, phone, hashedPass])
+    const user = await dbInstance.create_user([firstName, lastName, email, phone, hashedPass, 1, 20])
 
     // console.log(user[0])
     //log in user automatically

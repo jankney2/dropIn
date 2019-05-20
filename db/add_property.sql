@@ -25,7 +25,7 @@ insert into properties (
   (select list_id from property_lists where list_name=$9 limit 1), 
   $10, 
   $11, 
-  TRUE
+  $12
 )
 
 
