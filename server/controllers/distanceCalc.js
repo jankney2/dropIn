@@ -1,53 +1,70 @@
 const axios = require('axios')
 require('dotenv').config()
 const { REACT_APP_GOOGLE_MAPS_KEY } = process.env
-const texter= require('../Twilio/send')
-let iteration=0
-let textSent=false
+const texter = require('../Twilio/send')
+let iteration = 0
+let textSent = false
 module.exports = {
 
   calcDist: async (req, res) => {
+
+//currently this function has a loophole- a user can manually put in more properties to track from the assignment page and they will be tracked. Somehow i'll have to limit that. 
+
+//right now i just limit it to the first 20 responses from the db
+
+
 ++iteration
 
-
-console.log("IC:",iteration, "text status", textSent)
-if(iteration===360){
-  textSent=false
-  iteration=0
-}
-
-
+if (iteration === 6*60) {
+      textSent = false
+      iteration = 0
+    }
+    
+    
     let { userId } = req.params
     let { userLat, userLong } = req.body
     //get address from database
     let dbInstance = req.app.get('db')
+    let dbUser= await dbInstance.get_user(userId)
 
+
+    
     let dbResponse = await dbInstance.get_properties_by_user_id(userId)
+    let newDb= []
+    
+    
+    for (let i=0; i<+dbUser.allowable_tracking_num; i++){
+    newDb.push(dbResponse[i])
+    }
+    
 
+    console.log('can they cheat?', dbResponse.length, newDb.length, 'NewDB length')
 
     //for each item in the dbResponse array, run the distance matrix. if distanceVal is less than 1600, send text
-if(!textSent) {
+    if (!textSent) {
 
-//stack filter and foreach to determine 
-//only search 20 properties at a time-     
-
-
-dbResponse.forEach(async (el) => {
-
-      //compare it to static address
-
-      try {
-        let distMatrixRes = await axios.post(`https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=${userLat},${userLong}&destinations=${el.latitude},${el.longitude}&key=${REACT_APP_GOOGLE_MAPS_KEY}`)
+      //stack filter and foreach to determine 
+      //only search 20 properties at a time-     
 
 
-        let distanceText = distMatrixRes.data.rows[0].elements[0].distance.text
+      dbResponse.forEach(async (el) => {
+        
+        if (el.is_tracked) {
+          
+        
 
-        let distanceVal = distMatrixRes.data.rows[0].elements[0].distance.value
+          try {
+            let distMatrixRes = await axios.post(`https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=${userLat},${userLong}&destinations=${el.latitude},${el.longitude}&key=${REACT_APP_GOOGLE_MAPS_KEY}`)
 
-        //1600 meters in a mile
-        if (distanceVal < 1600) {
 
-          console.log(`
+            let distanceText = distMatrixRes.data.rows[0].elements[0].distance.text
+
+            let distanceVal = distMatrixRes.data.rows[0].elements[0].distance.value
+
+            //1600 meters in a mile
+            if (distanceVal < 1600) {
+
+              console.log(`
                           ============
               
               you are ${distanceText} away from ${el.street} ${el.city}
@@ -58,22 +75,22 @@ dbResponse.forEach(async (el) => {
 
               texter.textAlert(distanceText, el.street, el.city)
 
+            }
+            else {
+              console.log("no properties in range")
+              res.sendStatus(200)
+            }
+          }
+
+          catch (err) {
+            console.log(err)
+          }
         }
-        else {
-          console.log("no properties in range")
-          res.sendStatus(200)
-        }
-      }
 
-      catch(err) {
-        console.log(err)
-      }
+      })
 
-
-    })
-
-   textSent=true 
-  }
+      textSent = true
+    }
 
     res.sendStatus(200)
 

@@ -161,7 +161,7 @@ export default class UserHome extends Component {
 
         
         
-<p>You currently have {this.state.userTotal} of 20 properties in your database.</p>
+<p>You currently have {this.state.userTotal} properties in your database.</p>
 
 
         
