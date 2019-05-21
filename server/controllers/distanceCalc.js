@@ -15,7 +15,7 @@ module.exports = {
 
     ++iteration
 
-    if (iteration === 6 * 60) {
+    if (iteration === 6) {
       textSent = false
       iteration = 0
     }
