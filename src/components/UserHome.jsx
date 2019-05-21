@@ -147,6 +147,9 @@ export default class UserHome extends Component {
 
 
         <div className='userHomeGreeter'>
+        <h1>You are at Lat {this.state.activeLat} Long: {this.state.activeLong}</h1>
+
+
           <h1>Welcome back {this.state.user.first_name}</h1>
           <button onClick={() => {
             //static location
@@ -159,6 +162,13 @@ export default class UserHome extends Component {
             //active location grab
             setInterval(
               () => {
+
+                navigator.geolocation.watchPosition((position) => {
+                  this.setState({
+                    activeLat: position.coords.latitude,
+                    activeLong: position.coords.longitude
+                  })
+                })
 
                 axios.post(`/api/test/${this.state.user.user_id}`, {
                   userLat:this.state.activeLat, 

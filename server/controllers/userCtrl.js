@@ -61,7 +61,7 @@ try {
   
   var mailOptions = {
     from: 'dropinappinfo',
-    to: 'jhankney@gmail.com',
+    to: 'dropinappinfo@gmail.com',
     subject: 'New Referral Lead! Call ASAP!',
     text: `New lead! Contact them ASAP
     
