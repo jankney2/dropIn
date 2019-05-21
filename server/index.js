@@ -7,7 +7,6 @@ const app= express()
 const session= require('express-session')
 const {SESSION_SECRET, SERVER_PORT, CONNECTION_STRING, STRIPE_SAMPLE }= process.env
 const stripe= require('stripe')(STRIPE_SAMPLE)
-
 const massive= require('massive')
 const userCtrl= require('./controllers/userCtrl')
 const listCtrl= require('./controllers/listCtrl')
@@ -15,6 +14,7 @@ const authCtrl=require('./controllers/authCtrl')
 const distanceCalc= require('./controllers/distanceCalc')
 
 
+app.use( express.static( `${__dirname}/../build` ) )
 
 
 massive(CONNECTION_STRING).then((database)=> {
