@@ -21,22 +21,22 @@ export default class UserHome extends Component {
   //this is where you'll grab the lists for the user based off of the user's id (which you can pull off of the user object on state)
   componentDidMount() {
 
-    
+
 
 
 
     //active location grab? untested. 
-    // navigator.geolocation.watchPosition((position)=>{
-    //   this.setState({
-    //     activeLat: position.coords.latitude, 
-    //     activeLong: position.coords.longitude
-    //   })
-    // })
+    navigator.geolocation.watchPosition((position) => {
+      this.setState({
+        activeLat: position.coords.latitude,
+        activeLong: position.coords.longitude
+      })
+    })
 
 
     axios.get('/api/userSession').then(res => {
 
-      if(!res.data.user){
+      if (!res.data.user) {
         this.props.history.push('/')
         alert("it looks like you aren't logged in. Please log in to continue.")
       }
@@ -94,82 +94,92 @@ export default class UserHome extends Component {
       <div className="userHome">
 
 
-<ul>
+        <ul>
 
-<li>
-  <Link to='/addList'>
-  <div>
-    <i className="fas fa-plus-circle fa-5x"></i>
-  </div>
-  <p>Add Properties</p>
+          <li>
+            <Link to='/addList'>
+              <div>
+                <i className="fas fa-plus-circle fa-5x"></i>
+              </div>
+              <p>Add Properties</p>
 
-</Link>
-</li>
+            </Link>
+          </li>
 
-<li>
-  <Link to='/listDisplay'>
+          <li>
+            <Link to='/listDisplay'>
 
-  <div>
-    <i className="fas fa-list-ul fa-5x"></i>
-  </div>
+              <div>
+                <i className="fas fa-list-ul fa-5x"></i>
+              </div>
 
-  <p>
-    Display My properties
+              <p>
+                Display My properties
   </p>
 
 
-</Link>
-</li>
+            </Link>
+          </li>
 
-<li>
-  <Link to='/referral'>
+          <li>
+            <Link to='/referral'>
 
-  <div>
-    <i className="fas fa-user-friends fa-5x"></i>
-  </div>
+              <div>
+                <i className="fas fa-user-friends fa-5x"></i>
+              </div>
 
 
 
-  <p>
-    Refer A Friend
+              <p>
+                Refer A Friend
   </p>
 
-</Link>
-</li>
+            </Link>
+          </li>
 
 
-</ul>
-
-
-
+        </ul>
 
 
 
 
-<div className='userHomeGreeter'>
-<h1>Welcome back {this.state.user.first_name}</h1>
-        <button onClick={() => {
-          
-          setInterval(
-            () => {
-              
-              axios.post(`/api/test/${this.state.user.user_id}`, this.state.userLocation).then(res => console.log(res)).catch(err => alert(err))
-            }, 10000)
-            
+
+
+
+        <div className='userHomeGreeter'>
+          <h1>Welcome back {this.state.user.first_name}</h1>
+          <button onClick={() => {
+            //static location
+            // setInterval(
+            //   () => {
+
+            //     axios.post(`/api/test/${this.state.user.user_id}`, this.state.userLocation).then(res => console.log(res)).catch(err => alert(err))
+            //   }, 10000)
+
+            //active location grab
+            setInterval(
+              () => {
+
+                axios.post(`/api/test/${this.state.user.user_id}`, {
+                  userLat:this.state.activeLat, 
+                  userLong: this.state.activeLong
+                }).then(res => console.log(res)).catch(err => alert(err))
+              }, 10000)
+
           }}>Start Tracking</button>
 
 
-        
-        
-<p>You currently have {this.state.userTotal} properties in your database.</p>
 
 
-        
-</div>
+          <p>You currently have {this.state.userTotal} properties in your database.</p>
 
 
 
-       
+        </div>
+
+
+
+
 
 
 
