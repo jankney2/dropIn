@@ -1,5 +1,7 @@
 require('dotenv').config()
 
+const path = require('path'); // Usually moved to the start of file
+
 
 const express= require('express')
 const app= express()
@@ -13,6 +15,9 @@ const listCtrl= require('./controllers/listCtrl')
 const authCtrl=require('./controllers/authCtrl')
 const distanceCalc= require('./controllers/distanceCalc')
 
+app.get('*', (req, res)=>{
+    res.sendFile(path.join(__dirname, '../build/index.html'));
+});
 
 
 
