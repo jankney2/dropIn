@@ -31,6 +31,7 @@ insert into properties (
 
 
 
+
 --     properties.forEach(async (el) => {
 --     //geocode the address
 
