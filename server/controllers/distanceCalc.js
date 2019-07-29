@@ -15,7 +15,7 @@ module.exports = {
 
     ++iteration
 
-    if (iteration === 1) {
+    if (iteration === 2) {
       textSent = false
       iteration = 0
     }
