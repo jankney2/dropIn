@@ -11,6 +11,7 @@ module.exports = {
     //right now i just limit it to the first 20 responses from the db that are tracking/true
 
     ++iteration;
+//this stuff I need to tinker with before production
 
     if (iteration === 2) {
       textSent = false;
@@ -43,19 +44,12 @@ module.exports = {
       newDb.forEach(async el => {
         if (el.is_tracked) {
           try {
-            // let distMatrixRes = await axios.post(`https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=${userLat},${userLong}&destinations=${el.latitude},${el.longitude}&key=${REACT_APP_GOOGLE_MAPS_KEY}`)
-
-            // let distanceText = distMatrixRes.data.rows[0].elements[0].distance.text
-
-            // let distanceVal = distMatrixRes.data.rows[0].elements[0].distance.value
-
             let distanceVal = await dbInstance.distance_calculator_postgis([
               userLat,
               userLong,
               el.latitude,
               el.longitude
             ]);
-            console.log(distanceVal[0].st_distancesphere, "DISTANCEVAL");
             // 1600 meters in a mile
             if (distanceVal[0].st_distancesphere < 10000) {
               let distanceText =
@@ -72,7 +66,7 @@ module.exports = {
               
               `);
 
-              texter.textAlert(distanceText, el.street, el.city)
+              texter.textAlert(distanceText.toFixed(2), el.street, el.city);
             } else {
               console.log("no properties in range");
               res.sendStatus(200);
