@@ -1,0 +1,23 @@
+{
+    "users": [
+      {
+        "name": "Andrew",
+        "pets": [
+          { "name": "Layla", "age": 12 },
+          { "name": "Poopers", "age": 2 },
+          { "name": "Noelle", "age": 1 },
+          { "name": "Huckleberry", "age": 1 }
+        ]
+      },
+      {
+        "name": "Sergio",
+        "pets": [
+          { "name": "Athena", "age": 4 },
+          { "name": "Anubis", "age": 8 },
+          { "name": "Fluffy", "age": 1 }
+        ]
+      }
+    ]
+  }
+
+  

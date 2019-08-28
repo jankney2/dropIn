@@ -59,13 +59,15 @@ module.exports = {
 
 
           try {
-            let distMatrixRes = await axios.post(`https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=${userLat},${userLong}&destinations=${el.latitude},${el.longitude}&key=${REACT_APP_GOOGLE_MAPS_KEY}`)
+            // let distMatrixRes = await axios.post(`https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=${userLat},${userLong}&destinations=${el.latitude},${el.longitude}&key=${REACT_APP_GOOGLE_MAPS_KEY}`)
 
 
-            let distanceText = distMatrixRes.data.rows[0].elements[0].distance.text
+            // let distanceText = distMatrixRes.data.rows[0].elements[0].distance.text
 
-            let distanceVal = distMatrixRes.data.rows[0].elements[0].distance.value
+            // let distanceVal = distMatrixRes.data.rows[0].elements[0].distance.value
 
+            let distanceVal=await dbInstance.distance_calculator_postgis([userLat, userLong, el.latitude, el.longitude])
+console.log(distanceVal, 'DISTANCEVAL')
             //1600 meters in a mile
             if (distanceVal < 1600) {
 
@@ -78,7 +80,7 @@ module.exports = {
               
               `)
 
-              texter.textAlert(distanceText, el.street, el.city)
+              // texter.textAlert(distanceText, el.street, el.city)
 
             }
             else {

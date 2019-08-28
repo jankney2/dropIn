@@ -1,0 +1,1 @@
+select ST_DistanceSphere(geometry(point($1, $2)), geometry(point($3, $4)))
