@@ -56,7 +56,7 @@ module.exports = {
               el.longitude
             ]);
             console.log(distanceVal[0].st_distancesphere, "DISTANCEVAL");
-            //1600 meters in a mile
+            // 1600 meters in a mile
             if (distanceVal[0].st_distancesphere < 10000) {
               let distanceText =
                 (+distanceVal[0].st_distancesphere / 1000) * 0.62137;
@@ -72,7 +72,7 @@ module.exports = {
               
               `);
 
-              // texter.textAlert(distanceText, el.street, el.city)
+              texter.textAlert(distanceText, el.street, el.city)
             } else {
               console.log("no properties in range");
               res.sendStatus(200);
