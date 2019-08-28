@@ -67,9 +67,9 @@ module.exports = {
             // let distanceVal = distMatrixRes.data.rows[0].elements[0].distance.value
 
             let distanceVal=await dbInstance.distance_calculator_postgis([userLat, userLong, el.latitude, el.longitude])
-console.log(distanceVal, 'DISTANCEVAL')
+console.log(distanceVal[0].st_distancesphere, 'DISTANCEVAL')
             //1600 meters in a mile
-            if (distanceVal < 1600) {
+            if (distanceVal[0].st_distancesphere < 1600) {
 
               console.log(`
                           ============
