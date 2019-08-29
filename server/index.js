@@ -41,7 +41,7 @@ app.post(`/api/test/:userId`, distanceCalc.calcDist)
 app.put('/properties/:id', listCtrl.changeTracking)
 app.post(`/api/refer/:userId`, userCtrl.addReferral)
 
-
+app.put('/properties/changeMobile/:propertyId', listCtrl.changeMobileTracking)
 
 app.get('/api/userSession', (req, res)=>{
 
