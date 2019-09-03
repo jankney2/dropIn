@@ -7,7 +7,8 @@ const {
   SESSION_SECRET,
   SERVER_PORT,
   CONNECTION_STRING,
-  STRIPE_SAMPLE
+  STRIPE_SAMPLE, 
+  GOOGLE
 } = process.env;
 const stripe = require("stripe")(STRIPE_SAMPLE);
 const massive = require("massive");
@@ -15,6 +16,9 @@ const userCtrl = require("./controllers/userCtrl");
 const listCtrl = require("./controllers/listCtrl");
 const authCtrl = require("./controllers/authCtrl");
 const distanceCalc = require("./controllers/distanceCalc");
+const CronJob= require('cron').CronJob
+const nodemailer= require('nodemailer')
+const csv=require('to-csv')
 
 app.use(express.static(`${__dirname}/../build`));
 
@@ -86,5 +90,63 @@ app.put("/properties/addNote/:noteId", listCtrl.editNote);
 //fix this one to send as response the new lsit
 app.delete("/api/userLists/:listId", listCtrl.deleteList);
 app.delete("/properties/deleteProperty/:deleteId", listCtrl.deleteProperty);
+
+new CronJob('*/5 * * * * *',  async function() {
+
+
+
+var transporter=nodemailer.createTransport({
+  service: 'gmail',
+    auth: {
+      user: 'dropinappinfo@gmail.com',
+      pass: GOOGLE
+    }
+})
+
+
+
+
+let db=app.get('db')
+let res=await db.get_all_users()
+let crmProperties=[]
+
+for(let i=0;i<res.length; i++){
+ let properties=await db.get_properties_by_user_id(res[i].user_id)
+
+ for(let j=0;j<properties.length;j++){
+   if(properties[j].send_to_crm){
+   crmProperties.push(properties[i])
+   }
+ }
+
+
+
+  
+
+var mailOptions = {
+  from: 'dropinappinfo',
+  to: res[i].user_email,
+  subject: 'Add These Properties to your CRM',
+  text:`${res[i].first_name}, We hope that you have had a good week! We've attached a csv with the data of the properties that you tracked last week. We wish you the best in converting these leads into listings! `,
+  attachments:[{
+    uploadToCRM:crmProperties
+  }] 
+} 
+
+transporter.sendMail(mailOptions, function(error, info){
+  if (error) {
+    console.log(error);
+  } else {
+    console.log('Email sent: ' + info.response);
+  }
+});
+
+}
+
+}, null, true, 'America/Los_Angeles');
+
+
+
+
 
 app.listen(SERVER_PORT, () => console.log("listening on ", SERVER_PORT));
