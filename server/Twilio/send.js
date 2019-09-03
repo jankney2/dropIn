@@ -1,7 +1,7 @@
 require('dotenv').config()
 
 const {TWILIO_SID, TWILIO_AUTH_TOKEN}= process.env
-console.log('nodemon is running on the wrong file- send.js')
+
 const client=require('twilio')(TWILIO_SID, TWILIO_AUTH_TOKEN)
 
 

@@ -36,8 +36,9 @@ app.use(
   })
 );
 
+
 app.post(`/api/test/:userId`, distanceCalc.calcDist);
-app.post(`/properties/addToCrmList/:propId`, listCtrl.addToCrm)
+app.post(`/properties/addToCrmList/:propId`, listCtrl.toggleCrmStatus)
 
 
 app.put("/properties/:id", listCtrl.changeTracking);

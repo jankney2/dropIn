@@ -48,7 +48,7 @@ module.exports = {
           listName,
           latitude,
           longitude,
-          "t", 
+          "t",
           "f"
         ])
         .catch(err => {
@@ -242,10 +242,9 @@ module.exports = {
     }
   },
   changeMobileTracking: async (req, res) => {
-
     //wow this is ugly
     let { propertyId } = req.params;
-    let {userId}=req.body
+    let { userId } = req.body;
     console.log("hithit");
     let db = req.app.get("db");
 
@@ -260,27 +259,32 @@ module.exports = {
       }
     } catch (error) {
       res.status(500).send(error);
-
     }
 
     try {
-      let newProps= await db.get_properties_by_user_id(+userId)
-      res.status(200).send(newProps)
+      let newProps = await db.get_properties_by_user_id(+userId);
+      res.status(200).send(newProps);
     } catch (error) {
-res.status(500).send(error)      
+      res.status(500).send(error);
     }
-  }, 
-  addToCrm= async (req, res)=> {
-    //needs property id
+  },
+  toggleCrmStatus: async (req, res) => {
+    let db = req.app.get("db");
+    let { propId } = req.params;
+    let { currentStatus, userId } = req.body;
 
-    //switch is for the property- 
-    let db=req.app.get('db')
-    let {propId}=req.params
-    let {currentStatus, userId}=req.body
-    let toggledProperty= await db.toggle_crm_status([!currentStatus, propId, userId])
+    try {
+      await db.toggle_crm_status([!currentStatus, propId]);
 
+      try {
+        let newProps = await db.get_properties_by_user_id(userId);
 
-    res.status(200).send(toggledProperty)
-
+        res.status(200).send(newProps);
+      } catch (err) {
+        res.status(500).send(err);
+      }
+    } catch (error) {
+      res.status(500).send(error, "error toggling property crm status");
+    }
   }
 };
