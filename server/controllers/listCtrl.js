@@ -48,7 +48,8 @@ module.exports = {
           listName,
           latitude,
           longitude,
-          "t"
+          "t", 
+          "f"
         ])
         .catch(err => {
           res.send(err, "database error");
@@ -268,5 +269,18 @@ module.exports = {
     } catch (error) {
 res.status(500).send(error)      
     }
+  }, 
+  addToCrm= async (req, res)=> {
+    //needs property id
+
+    //switch is for the property- 
+    let db=req.app.get('db')
+    let {propId}=req.params
+    let {currentStatus, userId}=req.body
+    let toggledProperty= await db.toggle_crm_status([!currentStatus, propId, userId])
+
+
+    res.status(200).send(toggledProperty)
+
   }
 };

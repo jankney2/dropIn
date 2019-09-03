@@ -10,7 +10,8 @@ insert into properties (
   property_list_id, 
   latitude, 
   longitude, 
-  is_tracked 
+  is_tracked, 
+  send_to_crm
   
 
 ) values (
@@ -25,7 +26,8 @@ insert into properties (
   (select list_id from property_lists where list_name=$9 limit 1), 
   $10, 
   $11, 
-  $12
+  $12, 
+  $13
 )
 
 
