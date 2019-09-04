@@ -115,6 +115,7 @@ export default class ListDisplay extends Component {
       if (el.is_tracked) {
         return <Property
           className="property"
+          owningUserId={this.state.user.user_id}
           moveHandler={this.moveHandler}
           moverButton='move to untracked'
           key={el.property_id}
