@@ -72,7 +72,7 @@ class Property extends Component {
                 });
               }}
             >
-              Send to CRM{" "}
+              Send to CRM
             </button>
           </div>
         </div>
