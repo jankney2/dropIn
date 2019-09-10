@@ -60,9 +60,11 @@ app.get(`/api/getUser/:id`, userCtrl.getUser);
 app.get("/api/userLists/:id", listCtrl.getLists);
 app.get("/api/properties/:listId", listCtrl.getProperties);
 app.get("/auth/logout", authCtrl.logout);
-app.get("/api/userProperties/:id", listCtrl.getProperties);
+app.get("/api/userProperties/:id/:mobile", listCtrl.getProperties);
 
 app.post(`/api/addList`, listCtrl.addList);
+
+app.post(`/api/userProperties/calcDistance/:userId`, listCtrl.mobileDistCalc)
 
 app.post("/charge", async (req, res) => {
   app.use(require("body-parser").text());

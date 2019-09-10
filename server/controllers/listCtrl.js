@@ -32,8 +32,8 @@ module.exports = {
       let latitude = geoCodeRes.data.results[0].geometry.location.lat.toString();
 
       let longitude = geoCodeRes.data.results[0].geometry.location.lng.toString();
+      //property adder REFACTOR ME 
 
-      //property adder
 
       dbInstance
         .add_property([
@@ -92,7 +92,8 @@ module.exports = {
 
   getProperties: (req, res) => {
     let dbInstance = req.app.get("db");
-    let { id } = req.params;
+    let { id, mobile } = req.params;
+    
 
     dbInstance
       .get_properties_by_user_id(id)
@@ -287,5 +288,40 @@ module.exports = {
     } catch (error) {
       res.status(500).send(error, "error toggling property crm status");
     }
+  }, 
+  mobileDistCalc: async (req, res)=>{
+    let {userId} =req.params
+    let {latitude, longitude}=req.body
+    let db=req.app.get('db')
+
+
+    try {
+      let properties= await db.get_properties_by_user_id(userId)
+
+
+      for(let i=0;i<properties.length; i++){
+
+
+          let distanceVal = await db.distance_calculator_postgis([
+            latitude,
+            longitude,
+            properties[i].latitude,
+            properties[i].longitude
+          ]);
+
+
+
+          properties[i].distance=+distanceVal[0].st_distancesphere*3.28084/5280
+  
+        
+      }
+      res.status(200).send(properties)
+      
+    } catch (error) {
+      res.status(500).send(error)
+    }
+
+
+
   }
 };
