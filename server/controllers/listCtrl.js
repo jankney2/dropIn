@@ -128,7 +128,8 @@ module.exports = {
       state,
       zip,
       bedrooms,
-      price
+      price, 
+
     } = req.body;
     let { session } = req;
     let dbInstance = req.app.get("db");
