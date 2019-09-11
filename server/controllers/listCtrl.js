@@ -49,7 +49,10 @@ module.exports = {
           latitude,
           longitude,
           "t",
-          "f"
+          "f", 
+          el['Phone1'], 
+          el['OwnerEmail']
+
         ])
         .catch(err => {
           res.send(err, "database error");

@@ -11,7 +11,9 @@ insert into properties (
   latitude, 
   longitude, 
   is_tracked, 
-  send_to_crm
+  send_to_crm, 
+  seller_phone, 
+  seller_email
   
 
 ) values (
@@ -27,7 +29,9 @@ insert into properties (
   $10, 
   $11, 
   $12, 
-  $13
+  $13, 
+  $14, 
+  $15
 )
 
 
