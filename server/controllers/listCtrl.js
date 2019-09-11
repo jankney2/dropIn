@@ -314,8 +314,10 @@ module.exports = {
 
 
 
-          properties[i].distance=+distanceVal[0].st_distancesphere*3.28084/5280
-  
+          properties[i].distance=(+distanceVal[0].st_distancesphere/1000*.6213).toFixed(2)
+          console.log(properties[i].street, properties[i].distance, 'distance')
+        
+          
         
       }
       res.status(200).send(properties)
