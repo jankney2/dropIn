@@ -91,7 +91,7 @@ module.exports = {
 
   getProperties: (req, res) => {
     let dbInstance = req.app.get("db");
-    let { id, mobile } = req.params;
+    let { id} = req.params;
     
 
     dbInstance
