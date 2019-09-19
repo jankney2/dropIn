@@ -14,13 +14,9 @@ module.exports = {
       .catch(err => console.log(err, "first one failed"));
 
     let dbUser = await dbInstance.get_user([session.user.user_id]);
-
+    console.log(dbUser, 'DBUSER')
     properties.forEach(async el => {
-      //geocode the address
-
-      // console.log('for each running')
-      //geocoding
-
+      console.log(el['Property City'])
       let geoCodeRes = await axios.post(
         `https://maps.googleapis.com/maps/api/geocode/json?address=${
           el["Property Street"]
