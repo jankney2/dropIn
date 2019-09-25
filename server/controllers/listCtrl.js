@@ -178,7 +178,13 @@ module.exports = {
         track
       ]);
 
-      res.sendStatus(200);
+try {
+  let userProperties= await dbInstance.get_properties_by_user_id(session.user.user_id)
+  res.status(200).send(userProperties)
+
+} catch (error) {
+  res.status(500).send(error)
+}
     } catch {
       throw new Error(405);
     }
