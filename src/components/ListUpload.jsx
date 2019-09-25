@@ -65,11 +65,6 @@ componentDidMount() {
     let file = document.getElementById('fileUp')
     // console.log(file.files[0])
 
-
-    if (!this.state.newListName) {
-      return alert("please enter a name for this list")
-    }
-
     Papa.parse(file.files[0], {
       header: true,
       complete: (res) => {
