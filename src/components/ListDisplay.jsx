@@ -94,7 +94,7 @@ export default class ListDisplay extends Component {
         user: reduxState.user
       })
 
-      axios.get(`/api/userProperties/${this.state.user.user_id}`).then(res => {
+      axios.get(`/CRM/${this.state.user.user_id}`).then(res => {
 
         this.setState({
           userProperties: res.data

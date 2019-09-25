@@ -9,14 +9,14 @@ module.exports = {
     let { session } = req;
     let dbInstance = req.app.get("db");
 
-    dbInstance
+await    dbInstance
       .create_list([session.user.user_id, listName])
       .catch(err => console.log(err, "first one failed"));
 
     let dbUser = await dbInstance.get_user([session.user.user_id]);
-    console.log(dbUser, 'DBUSER')
+
     properties.forEach(async el => {
-      console.log(el['Property City'])
+      console.log(el, 'for each')
       let geoCodeRes = await axios.post(
         `https://maps.googleapis.com/maps/api/geocode/json?address=${
           el["Property Street"]

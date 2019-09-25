@@ -66,23 +66,7 @@ app.post(`/api/addList`, listCtrl.addList);
 
 app.post(`/api/userProperties/calcDistance/:userId`, listCtrl.mobileDistCalc)
 
-app.post("/charge", async (req, res) => {
-  app.use(require("body-parser").text());
-  try {
-    // console.log(req.body)
-    let { status } = await stripe.charges.create({
-      amount: 2000,
-      currency: "usd",
-      description: "An example charge",
-      source: req.body
-    });
-    console.log(status);
-    res.json({ status });
-  } catch (err) {
-    console.log(err);
-    res.status(500).end();
-  }
-});
+
 
 app.post(`/api/addListIndividual`, listCtrl.addIndividual);
 app.post("/auth/login", authCtrl.login);
