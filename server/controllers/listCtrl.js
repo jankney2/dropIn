@@ -9,67 +9,42 @@ module.exports = {
     let { session } = req;
     let dbInstance = req.app.get("db");
 
-
-
-    let dbUser = await dbInstance.get_user([session.user.user_id]);
-
     properties.forEach(async el => {
       console.log(el, "for each");
       let geoCodeRes = await axios.post(
         `https://maps.googleapis.com/maps/api/geocode/json?address=${
-          el["Property Street"]
-        }+${el["Property City"].replace(",", "")}+${el["Property State"]}+${el[
-          "Property Zip"
-        ].toString()}&key=${REACT_APP_GOOGLE_MAPS_KEY}`
+          el.street
+        }+${el.city.replace(",", "")}+${
+          el.state
+        }+${el.zipcode.toString()}&key=${REACT_APP_GOOGLE_MAPS_KEY}`
       );
 
       let latitude = geoCodeRes.data.results[0].geometry.location.lat.toString();
 
       let longitude = geoCodeRes.data.results[0].geometry.location.lng.toString();
-      //property adder REFACTOR ME
 
-      dbInstance
-        .add_property([
-          el["Property Street"],
-          el["Property City"],
-          el["Property State"],
-          el["Property Zip"].toString(),
-          el.Price.toString(),
-          el["Bathrooms Full"].toString(),
-          el.Bedrooms.toString(),
-          el.Seller,
-          listName,
+      try {
+        await dbInstance.add_property([
+          el.street,
+          el.city,
+          el.state,
+          el.zipcode.toString(),
+          el.price.toString(),
+          el.bathrooms.toString(),
+          el.bedrooms.toString(),
+          el.seller,
           latitude,
           longitude,
           "f",
-          el["Phone1"],
-          el["OwnerEmail"]
-        ])
-        .catch(err => {
-          res.send(err, "database error");
-          console.log(err);
-        });
-    });
-
-    setTimeout(async () => {
-      let trackedProps = await dbInstance.get_total_tracked([
-        session.user.user_id
-      ]);
-
-      console.log("trackedProps", trackedProps);
-
-      if (trackedProps[0].count > dbUser[0].allowable_tracking_num) {
-        let userProps = await dbInstance.get_properties_by_user_id([
-          session.user.user_id
+          el.phone,
+          el.email
         ]);
-
-        for (let i = 20; i < userProps.length; i++) {
-          dbInstance.bash_status(userProps[i].property_id);
-        }
+      } catch (error) {
+        console.log(error, 'faweoifjaweoij')
+        res.status(500).send(error);
       }
-    }, 5000);
-
-    res.sendStatus(200);
+    });
+    res.sendStatus(200)
   },
 
   getLists: (req, res) => {
