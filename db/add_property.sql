@@ -1,3 +1,5 @@
+--fix me 
+
 insert into properties (
  	street, 
 	city, 
@@ -7,10 +9,8 @@ insert into properties (
 	bathrooms, 
 	bedrooms, 
 	seller,
-  property_list_id, 
   latitude, 
   longitude, 
-  is_tracked, 
   send_to_crm, 
   seller_phone, 
   seller_email
@@ -25,13 +25,10 @@ insert into properties (
   $6,
   $7,
   $8, 
-  (select list_id from property_lists where list_name=$9 limit 1), 
   $10, 
   $11, 
   $12, 
-  $13, 
-  $14, 
-  $15
+  $13
 )
 
 

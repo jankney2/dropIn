@@ -5,18 +5,16 @@ const { REACT_APP_GOOGLE_MAPS_KEY } = process.env;
 module.exports = {
   addList: async (req, res) => {
     //maybe make what we pull off the request a bit more robust- later
-    let { properties, listName } = req.body;
+    let { properties } = req.body;
     let { session } = req;
     let dbInstance = req.app.get("db");
 
-await    dbInstance
-      .create_list([session.user.user_id, listName])
-      .catch(err => console.log(err, "first one failed"));
+
 
     let dbUser = await dbInstance.get_user([session.user.user_id]);
 
     properties.forEach(async el => {
-      console.log(el, 'for each')
+      console.log(el, "for each");
       let geoCodeRes = await axios.post(
         `https://maps.googleapis.com/maps/api/geocode/json?address=${
           el["Property Street"]
@@ -28,8 +26,7 @@ await    dbInstance
       let latitude = geoCodeRes.data.results[0].geometry.location.lat.toString();
 
       let longitude = geoCodeRes.data.results[0].geometry.location.lng.toString();
-      //property adder REFACTOR ME 
-
+      //property adder REFACTOR ME
 
       dbInstance
         .add_property([
@@ -44,11 +41,9 @@ await    dbInstance
           listName,
           latitude,
           longitude,
-          "t",
-          "f", 
-          el['Phone1'], 
-          el['OwnerEmail']
-
+          "f",
+          el["Phone1"],
+          el["OwnerEmail"]
         ])
         .catch(err => {
           res.send(err, "database error");
@@ -91,8 +86,7 @@ await    dbInstance
 
   getProperties: (req, res) => {
     let dbInstance = req.app.get("db");
-    let { id} = req.params;
-    
+    let { id } = req.params;
 
     dbInstance
       .get_properties_by_user_id(id)
@@ -128,8 +122,7 @@ await    dbInstance
       state,
       zip,
       bedrooms,
-      price, 
-
+      price
     } = req.body;
     let { session } = req;
     let dbInstance = req.app.get("db");
@@ -178,13 +171,14 @@ await    dbInstance
         track
       ]);
 
-try {
-  let userProperties= await dbInstance.get_properties_by_user_id(session.user.user_id)
-  res.status(200).send(userProperties)
-
-} catch (error) {
-  res.status(500).send(error)
-}
+      try {
+        let userProperties = await dbInstance.get_properties_by_user_id(
+          session.user.user_id
+        );
+        res.status(200).send(userProperties);
+      } catch (error) {
+        res.status(500).send(error);
+      }
     } catch {
       throw new Error(405);
     }
@@ -293,42 +287,32 @@ try {
     } catch (error) {
       res.status(500).send(error, "error toggling property crm status");
     }
-  }, 
-  mobileDistCalc: async (req, res)=>{
-    let {userId} =req.params
-    let {latitude, longitude}=req.body
-    let db=req.app.get('db')
-
+  },
+  mobileDistCalc: async (req, res) => {
+    let { userId } = req.params;
+    let { latitude, longitude } = req.body;
+    let db = req.app.get("db");
 
     try {
-      let properties= await db.get_properties_by_user_id(userId)
+      let properties = await db.get_properties_by_user_id(userId);
 
+      for (let i = 0; i < properties.length; i++) {
+        let distanceVal = await db.distance_calculator_postgis([
+          latitude,
+          longitude,
+          properties[i].latitude,
+          properties[i].longitude
+        ]);
 
-      for(let i=0;i<properties.length; i++){
-
-
-          let distanceVal = await db.distance_calculator_postgis([
-            latitude,
-            longitude,
-            properties[i].latitude,
-            properties[i].longitude
-          ]);
-
-
-
-          properties[i].distance=(+distanceVal[0].st_distancesphere/1000*.6213).toFixed(2)
-          console.log(properties[i].street, properties[i].distance, 'distance')
-        
-          
-        
+        properties[i].distance = (
+          (+distanceVal[0].st_distancesphere / 1000) *
+          0.6213
+        ).toFixed(2);
+        console.log(properties[i].street, properties[i].distance, "distance");
       }
-      res.status(200).send(properties)
-      
+      res.status(200).send(properties);
     } catch (error) {
-      res.status(500).send(error)
+      res.status(500).send(error);
     }
-
-
-
   }
 };
