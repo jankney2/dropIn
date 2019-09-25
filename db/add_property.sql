@@ -13,7 +13,8 @@ insert into properties (
   longitude, 
   send_to_crm, 
   seller_phone, 
-  seller_email
+  seller_email, 
+  owning_user
   
 
 ) values (
@@ -29,7 +30,8 @@ insert into properties (
   $10, 
   $11, 
   $12, 
-  $13
+  $13, 
+  $14
 )
 
 

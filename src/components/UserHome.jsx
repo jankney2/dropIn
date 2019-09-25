@@ -54,13 +54,6 @@ export default class UserHome extends Component {
         user: res.data.user
       })
 
-      axios.get(`/api/userTotal/${res.data.user.user_id}`).then(response => {
-        this.setState({
-          userTotal: response.data.count
-        })
-      }).catch(err => console.log(err, "userTotal req failed"))
-
-
     }).catch(err =>
 
 

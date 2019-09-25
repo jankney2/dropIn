@@ -37,7 +37,8 @@ module.exports = {
           longitude,
           "f",
           el.phone,
-          el.email
+          el.email, 
+          +session.user.user_id
         ]);
       } catch (error) {
         console.log(error, 'faweoifjaweoij')

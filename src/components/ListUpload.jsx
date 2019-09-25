@@ -85,18 +85,21 @@ componentDidMount() {
 
 
   }
-
+//I AM BROKEN
   submitHandlerIndividual = () => {
     axios.post(`/api/addlistIndividual`, {
-      bathrooms: this.state.bathroomsInput,
-      bedrooms: this.state.bedroomsInput,
-      newListName: this.state.individualListName,
-      seller: this.state.sellerInput,
-      street: this.state.streetInput,
-      zip: this.state.zipInput,
-      city: this.state.cityInput,
-      state: this.state.stateInput, 
-      price: this.state.priceInput
+      properties:[{
+        bathrooms: this.state.bathroomsInput,
+        bedrooms: this.state.bedroomsInput,
+        street: this.state.streetInput,
+        zip: this.state.zipInput,
+        city: this.state.cityInput,
+        state: this.state.stateInput, 
+        price: this.state.priceInput, 
+        email:this.state.sellerEmail,
+        seller:this.state.sellerName 
+
+      }]
     }).then(()=>{
 
       let inputs= document.getElementsByTagName('input')
@@ -131,7 +134,18 @@ componentDidMount() {
     let mapper= this.state.individualListRows.map((el, i)=> {
       return(
         <div key={i}>
-        <input onChange={this.changeHandlerIndividual} type="text" name="streetInput" placeholder="Street"
+        <input onChange={this.changeHandlerIndividual} type="text" name="sellerName" placeholder="Seller name"
+          required
+        />
+        <input onChange={this.changeHandlerIndividual} type="text" name="sellerPhone" placeholder="seller phone"
+          required
+        />
+        
+        <input onChange={this.changeHandlerIndividual} type="text" name="sellerEmail" placeholder="seller email"
+          required
+        />
+        
+        <input onChange={this.changeHandlerIndividual} type="text" name="streetName" placeholder="street name/house number"
           required
         />
 
@@ -165,12 +179,6 @@ componentDidMount() {
         />
 
         <input onChange={this.changeHandlerIndividual} type="text"
-          name="sellerInput"
-          placeholder="Seller Name"
-          required
-        />
-
-        <input onChange={this.changeHandlerIndividual} type="text"
           name="priceInput"
           placeholder="Price"
           required
@@ -191,6 +199,8 @@ componentDidMount() {
           
 
           <p>Upload your csv from Landvoice, then click submit!</p>
+
+
 
           <div className="fileInputCont">
             <input type="text" placeholder="List Name" onChange={(e) => {
@@ -213,9 +223,7 @@ componentDidMount() {
 
           <h1>Only have one or two properties?</h1>
 
-          <input onChange={this.changeHandlerIndividual} type="text" name="individualListName" placeholder="List Name"
-            required
-          />
+
          {mapper}
          
 
