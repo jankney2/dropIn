@@ -169,8 +169,8 @@ export default class ListDisplay extends Component {
       <div className="listDisplay">
 
         <div>
-          <h1>Untracked Properties</h1>
-          
+
+          <p>{untrackedPropertyMap.length}/50 Properties in DB</p>
           <div className='propertyHolder'>
             {untrackedPropertyMap}</div>
 
