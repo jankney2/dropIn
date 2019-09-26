@@ -48,7 +48,9 @@ module.exports = {
     res.status(200).send(session.user.user_id)
   },
   addListMobile: async (req, res) => {
-    let { properties, userId } = req.body;
+    console.log('hit')
+    let { properties } = req.body;
+    let userId=req.params
     let dbInstance = req.app.get("db");
 
     properties.forEach(async el => {
@@ -64,7 +66,7 @@ module.exports = {
       let latitude = geoCodeRes.data.results[0].geometry.location.lat.toString();
 
       let longitude = geoCodeRes.data.results[0].geometry.location.lng.toString();
-
+console.log(longitude, latitude, 'long lat')
       try {
         await dbInstance.add_property([
           el.street,
@@ -78,7 +80,7 @@ module.exports = {
           latitude,
           longitude,
           "f",
-          el.phone,
+          +el.phone,
           el.email, 
           +userId
         ]);
