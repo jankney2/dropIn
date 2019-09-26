@@ -63,7 +63,7 @@ app.get("/auth/logout", authCtrl.logout);
 app.get("/CRM/:id", listCtrl.getProperties);
 
 app.post(`/api/addList`, listCtrl.addList);
-app.post(`/api/addListMobile`, listCtrl.addListMobile);
+app.post(`/api/mobileAdd`, listCtrl.addListMobile);
 
 app.post(`/api/userProperties/calcDistance/:userId`, listCtrl.mobileDistCalc)
 
