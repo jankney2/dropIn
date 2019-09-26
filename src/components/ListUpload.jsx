@@ -203,11 +203,6 @@ componentDidMount() {
 
 
           <div className="fileInputCont">
-            <input type="text" placeholder="List Name" onChange={(e) => {
-              this.setState({
-                newListName: e.target.value
-              })
-            }} />
 
             <input type="file" id="fileUp" />
 

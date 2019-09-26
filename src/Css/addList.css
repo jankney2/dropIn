@@ -33,6 +33,10 @@
   border-radius: 5%;
   padding: 5%;
   background-color: #f4f4f4;
+  display:flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+
 }
 
 .listCol h1 {

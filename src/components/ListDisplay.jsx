@@ -140,7 +140,7 @@ export default class ListDisplay extends Component {
 
     let untrackedPropertyMap = this.state.userProperties.map(el => {
 
-      if (!el.is_tracked) {
+
         return <Property
           className="property"
           moveHandler={this.moveHandler}
@@ -161,22 +161,12 @@ export default class ListDisplay extends Component {
           updating={this.updating}
           user={this.state.user}
         />
-      }
+
 
     })
 
     return (
       <div className="listDisplay">
-
-        <div>
-          <h1>Tracked Properties</h1>
-
-
-          <div className="propertyHolder">
-            {trackedPropertyMap}
-          </div>
-
-        </div>
 
         <div>
           <h1>Untracked Properties</h1>
