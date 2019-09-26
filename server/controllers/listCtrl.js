@@ -45,7 +45,7 @@ module.exports = {
         res.status(500).send(error);
       }
     });
-    res.sendStatus(200)
+    res.status(200).send(session.user.user_id)
   },
 
   getLists: (req, res) => {
