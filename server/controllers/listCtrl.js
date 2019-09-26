@@ -47,6 +47,48 @@ module.exports = {
     });
     res.status(200).send(session.user.user_id)
   },
+  addListMobile: async (req, res) => {
+    let { properties, userId } = req.body;
+    let dbInstance = req.app.get("db");
+
+    properties.forEach(async el => {
+      console.log(el, "for each");
+      let geoCodeRes = await axios.post(
+        `https://maps.googleapis.com/maps/api/geocode/json?address=${
+          el.street
+        }+${el.city.replace(",", "")}+${
+          el.state
+        }+${el.zipcode.toString()}&key=${REACT_APP_GOOGLE_MAPS_KEY}`
+      );
+
+      let latitude = geoCodeRes.data.results[0].geometry.location.lat.toString();
+
+      let longitude = geoCodeRes.data.results[0].geometry.location.lng.toString();
+
+      try {
+        await dbInstance.add_property([
+          el.street,
+          el.city,
+          el.state,
+          el.zipcode.toString(),
+          el.price.toString(),
+          el.bathrooms.toString(),
+          el.bedrooms.toString(),
+          el.seller,
+          latitude,
+          longitude,
+          "f",
+          el.phone,
+          el.email, 
+          +userId
+        ]);
+      } catch (error) {
+        console.log(error, 'faweoifjaweoij')
+        res.status(500).send(error);
+      }
+    });
+    res.status(200).send(userId)
+  },
 
   getLists: (req, res) => {
     let dbInstance = req.app.get("db");
