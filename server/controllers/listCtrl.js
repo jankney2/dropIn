@@ -1,5 +1,6 @@
 const axios = require("axios");
 require("dotenv").config();
+const nodemailer= require('nodemailer')
 const { REACT_APP_GOOGLE_MAPS_KEY } = process.env;
 
 module.exports = {
@@ -334,5 +335,51 @@ console.log(longitude, latitude, 'long lat')
     } catch (error) {
       res.status(500).send(error);
     }
+  }, 
+  emailer: async (req, res)=>{
+    let db=req.app.get('db')
+    let {propId}=req.params
+    let {userId}=req.body
+    let property= await db.get_property_by_id(propId)
+    let user= await db.get_user(userId)
+    property=property[0]
+    user=user[0]
+
+
+    var transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: 'dropinappinfo@gmail.com',
+        pass: GOOGLE
+      }
+    });
+    
+    var mailOptions = {
+      from: 'dropinappinfo',
+      to: user.user_email,
+      subject: 'Requested Property!',
+      text: `${user.first_name}, 
+
+      Below is the information for the property that you requested. 
+      We encourage you to move this lead into your CRM. It will be deleted from our database. 
+      
+Owner Name:${property.seller}
+Address:${property.street} ${property.city} ${property.zip} ${property.state}
+Owner Cell: ${property.seller_phone}
+Owner Email: ${property.seller_email}
+      `
+    };
+    
+    transporter.sendMail(mailOptions, function(error, info){
+      if (error) {
+        console.log(error);
+      } else {
+        console.log('Email sent: ' + info.response);
+      }
+    });
+
+
+
+
   }
 };

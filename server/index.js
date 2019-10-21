@@ -78,6 +78,8 @@ app.put("/properties/addNote/:noteId", listCtrl.editNote);
 app.delete("/api/userLists/:listId", listCtrl.deleteList);
 app.delete("/properties/deleteProperty/:deleteId", listCtrl.deleteProperty);
 
+app.post('/emailProperty/:propId', listCtrl.emailer)
+
 // new CronJob('5 * * * * *',  async function() {
 
 
