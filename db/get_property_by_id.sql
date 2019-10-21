@@ -1,2 +1,2 @@
-select is_tracked from properties
+select * from properties
 where property_id=$1

@@ -340,8 +340,8 @@ console.log(longitude, latitude, 'long lat')
     let db=req.app.get('db')
     let {propId}=req.params
     let {userId}=req.body
-    let property= await db.get_property_by_id(propId)
-    let user= await db.get_user(userId)
+    let property= await db.get_property_by_id(+propId)
+    let user= await db.get_user(+userId)
     property=property[0]
     user=user[0]
 
@@ -350,7 +350,7 @@ console.log(longitude, latitude, 'long lat')
       service: 'gmail',
       auth: {
         user: 'dropinappinfo@gmail.com',
-        pass: GOOGLE
+        pass: process.env.GOOGLE
       }
     });
     
@@ -378,9 +378,11 @@ Owner Email: ${property.seller_email}
       } else {
         console.log('Email sent: ' + info.response);
 
-        await db.delete_property_by_id(propId)
+        db.delete_property_by_id(+propId).then(r=>{
+          res.sendStatus(200)
 
-        res.sendStatus(200)
+        })
+
 
       }
     });
