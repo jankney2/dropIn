@@ -367,6 +367,8 @@ Owner Name:${property.seller}
 Address:${property.street} ${property.city} ${property.zip} ${property.state}
 Owner Cell: ${property.seller_phone}
 Owner Email: ${property.seller_email}
+
+
       `
     };
     
@@ -375,6 +377,11 @@ Owner Email: ${property.seller_email}
         console.log(error);
       } else {
         console.log('Email sent: ' + info.response);
+
+        await db.delete_property_by_id(propId)
+
+        res.sendStatus(200)
+
       }
     });
 
