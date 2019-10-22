@@ -25,6 +25,8 @@ app.use(express.static(`${__dirname}/../build`));
 massive(CONNECTION_STRING).then(database => {
   app.set("db", database);
   console.log("database connected");
+}).catch(err=>{
+  console.log('error with massive', err)
 });
 
 app.use(express.json());
