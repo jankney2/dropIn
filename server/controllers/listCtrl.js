@@ -210,7 +210,7 @@ console.log(longitude, latitude, 'long lat')
     let { deleteId } = req.params;
     let { user } = req.session;
 
-    await dbInstance.delete_property_by_id(deleteId);
+    await dbInstance.unlink_property(deleteId);
 
     try {
       let newProperties = await dbInstance.get_properties_by_user_id(
@@ -378,7 +378,7 @@ Owner Email: ${property.seller_email}
       } else {
         console.log('Email sent: ' + info.response);
 
-        db.delete_property_by_id(+propId).then(r=>{
+        db.unlink_property(+propId).then(r=>{
           res.sendStatus(200)
 
         }).catch(err=>{
