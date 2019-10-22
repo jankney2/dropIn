@@ -45,7 +45,7 @@ componentDidMount() {
       this.setState({
         user: reduxState.user
       })
-   
+      console.log(this.state.user, 'redux user')
    }).catch(err=>console.log('error on session request', err))
 }
 
@@ -73,14 +73,17 @@ componentDidMount() {
           newListData: res.data
         })
         console.log('parsed')
-      }
-    }
-    ).then(()=>{
-      axios.post(`/api/addProperties/${this.state.user.userId}`, {
-        listName: this.state.newListName,
-        properties: this.state.newListData,
-      }).then(()=>this.routeToHome()).catch(err => console.log(err, 'add list failed'))
+        axios.post(`/api/addProperties/${this.state.user.user_id}`, {
+          properties: this.state.newListData,
+        }).then((res)=>
+        {
+          if(res.status==200){
 
+            this.routeToHome()
+          }
+        }
+        ).catch(err => console.log(err, 'add list failed'))
+      }
     })
 
 
@@ -205,7 +208,7 @@ componentDidMount() {
 
           <div className="fileInputCont">
 
-            <input type="file" id="fileUp" />
+            <input type="file" accept='.csv' id="fileUp" />
 
             <button onClick={(e) => {
               this.submitHandler(e)

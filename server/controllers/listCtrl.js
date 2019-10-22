@@ -51,9 +51,9 @@ module.exports = {
   addListMobile: async (req, res) => {
     console.log('hit')
     let { properties } = req.body;
-    let userId=req.params
+    let {userId}=req.params
     let dbInstance = req.app.get("db");
-
+    console.log(typeof(userId), 'userId', userId)
     properties.forEach(async el => {
       console.log(el, "for each");
       let geoCodeRes = await axios.post(
@@ -83,14 +83,14 @@ console.log(longitude, latitude, 'long lat')
           "f",
           +el.phone,
           el.email, 
-          +userId
+          userId
         ]);
       } catch (error) {
         console.log(error, 'faweoifjaweoij')
         res.status(500).send(error);
       }
     });
-    res.status(200).send(userId)
+    res.sendStatus(200)
   },
 
   getLists: (req, res) => {
