@@ -61,6 +61,7 @@ app.get("/api/userLists/:id", listCtrl.getLists);
 app.get("/api/properties/:listId", listCtrl.getProperties);
 app.get("/auth/logout", authCtrl.logout);
 app.get("/CRM/:id", listCtrl.getProperties);
+app.post('/api/addProperties/:userId', listCtrl.addListMobile)
 
 app.post(`/api/addList`, listCtrl.addList);
 app.post(`/api/mobileAdd/:userId`, listCtrl.addListMobile);

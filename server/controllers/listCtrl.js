@@ -381,6 +381,8 @@ Owner Email: ${property.seller_email}
         db.delete_property_by_id(+propId).then(r=>{
           res.sendStatus(200)
 
+        }).catch(err=>{
+          res.sendStatus(505)
         })
 
 

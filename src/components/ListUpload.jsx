@@ -14,7 +14,8 @@ export default class ListUpload extends Component {
       newListName: '',
       newListData: [],
       individualListName: '',
-      individualListRows: [1]
+      individualListRows: [1], 
+      user:{}
     }
   }
 
@@ -74,14 +75,14 @@ componentDidMount() {
         console.log('parsed')
       }
     }
-    )
-
-    setTimeout(() => {
-      axios.post('/api/addList', {
+    ).then(()=>{
+      axios.post(`/api/addProperties/${this.state.user.userId}`, {
         listName: this.state.newListName,
         properties: this.state.newListData,
       }).then(()=>this.routeToHome()).catch(err => console.log(err, 'add list failed'))
-    }, 1000)
+
+    })
+
 
 
   }
@@ -195,10 +196,10 @@ componentDidMount() {
 
         <div className="csvContainer listCol">
 
-          <h1>Create New Property List</h1>
+          <h1>Add Properties</h1>
           
 
-          <p>Upload your csv from Landvoice, then click submit!</p>
+          <p>Upload your csv that follows the FOLLOWING FORMAT</p>
 
 
 
