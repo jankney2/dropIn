@@ -14,7 +14,8 @@ export default class ListUpload extends Component {
       newListName: '',
       newListData: [],
       individualListName: '',
-      individualListRows: [1]
+      individualListRows: [1], 
+      user:{}
     }
   }
 
@@ -44,7 +45,7 @@ componentDidMount() {
       this.setState({
         user: reduxState.user
       })
-   
+      console.log(this.state.user, 'redux user')
    }).catch(err=>console.log('error on session request', err))
 }
 
@@ -72,16 +73,19 @@ componentDidMount() {
           newListData: res.data
         })
         console.log('parsed')
-      }
-    }
-    )
+        axios.post(`/api/addProperties/${this.state.user.user_id}`, {
+          properties: this.state.newListData,
+        }).then((res)=>
+        {
+          if(res.status==200){
 
-    setTimeout(() => {
-      axios.post('/api/addList', {
-        listName: this.state.newListName,
-        properties: this.state.newListData,
-      }).then(()=>this.routeToHome()).catch(err => console.log(err, 'add list failed'))
-    }, 1000)
+            this.routeToHome()
+          }
+        }
+        ).catch(err => console.log(err, 'add list failed'))
+      }
+    })
+
 
 
   }
@@ -195,16 +199,16 @@ componentDidMount() {
 
         <div className="csvContainer listCol">
 
-          <h1>Create New Property List</h1>
+          <h1>Add Properties</h1>
           
 
-          <p>Upload your csv from Landvoice, then click submit!</p>
+          <p>Upload your csv that follows the FOLLOWING FORMAT</p>
 
 
 
           <div className="fileInputCont">
 
-            <input type="file" id="fileUp" />
+            <input type="file" accept='.csv' id="fileUp" />
 
             <button onClick={(e) => {
               this.submitHandler(e)
